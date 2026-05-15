@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /mayoristas.html
+Sitemap: https://flordesauco.com.ar/sitemap.xml

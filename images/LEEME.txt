@@ -1,0 +1,38 @@
+INSTRUCCIONES PARA AGREGAR FOTOS — Flor de Sauco
+==================================================
+
+1. Colocá las fotos en esta carpeta /images/
+   Formatos recomendados: JPG o WebP
+   Tamaño recomendado: mínimo 800×800px para cuadradas, 1200×600 para panorámicas
+
+2. En el archivo index.html buscá los div con clase "gallery-item--placeholder"
+
+3. Para cada placeholder que quieras reemplazar:
+   a) Cambiá la clase "gallery-item--placeholder" por "gallery-item--photo"
+   b) Agregá el atributo: style="background-image: url('images/nombre-de-tu-foto.jpg')"
+   c) Eliminá el div interno con clase "gallery-placeholder"
+
+EJEMPLO:
+--------
+ANTES:
+  <div class="gallery-item gallery-item--placeholder">
+      <div class="gallery-placeholder">...</div>
+  </div>
+
+DESPUÉS:
+  <div class="gallery-item gallery-item--photo" style="background-image: url('images/panaderia-01.jpg')">
+  </div>
+
+FOTOS SUGERIDAS:
+- panaderia-01.jpg → Interior panadería / pan recién horneado
+- cafeteria-01.jpg → Mesa con café y desayuno
+- local-tafi-01.jpg → Exterior o interior del local Tafí del Valle
+- tortas-01.jpg → Mini tortas / tartas
+- angostura-01.jpg → Vista panorámica del Dique La Angostura (para el item "wide")
+- heladeria-01.jpg → Copas de helado
+- cerveza-01.jpg → Chopp o cervezas servidas
+- equipo-01.jpg → El equipo trabajando
+
+COMPLETAR TAMBIÉN:
+- Número de WhatsApp: buscar "+54XXXXXXXXXX" en index.html y reemplazar × 2 (botón mayor + FAB)
+- Teléfonos de cada sucursal: buscar "A completar" en index.html

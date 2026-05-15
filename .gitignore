@@ -1,0 +1,21 @@
+# Secretos locales — nunca subir
+.dev.vars
+
+# Fotos originales no usadas en el sitio
+images/Foto Producto/
+
+# Dependencias
+node_modules/
+
+# Wrangler / build
+.wrangler/
+dist/
+.output/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
