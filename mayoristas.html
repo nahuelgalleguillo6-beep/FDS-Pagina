@@ -730,6 +730,18 @@ async function odooRegistrarPedido(nombre, items, entrega, notas) {
         }],
         {}
       );
+    } else {
+      /* Producto no encontrado en Odoo: línea descriptiva para no perder el ítem */
+      await odooCall(
+        'sale.order.line', 'create',
+        [{
+          order_id:        orderId,
+          name:            item.nombre + ' [sin producto Odoo]',
+          product_uom_qty: item.qty,
+          price_unit:      item.precio
+        }],
+        {}
+      );
     }
   }
 
@@ -782,8 +794,8 @@ window.mayConfirm = async function() {
   } catch(e) {
     errEl.textContent   = 'No se pudo registrar el pedido: ' + e.message;
     errEl.style.display = 'block';
-    btn.disabled    = false;
-    btn.textContent = 'CONFIRMAR PEDIDO';
+    btn.disabled   = false;
+    btn.innerHTML  = '⚡ CONFIRMAR PEDIDO';
   }
 };
 
@@ -818,8 +830,8 @@ window.mayNuevoPedido = function() {
   document.getElementById('may-success').style.display    = 'none';
   document.getElementById('may-panel-foot').style.display = '';
   var btn = document.getElementById('may-confirm-btn');
-  btn.disabled    = false;
-  btn.textContent = 'CONFIRMAR PEDIDO';
+  btn.disabled  = false;
+  btn.innerHTML = '⚡ CONFIRMAR PEDIDO';
   window.mayCloseCart();
 };
 
