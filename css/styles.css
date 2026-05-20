@@ -604,6 +604,12 @@ h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.25; }
     transition: var(--transition);
     border: 1px solid var(--cream-dark);
 }
+.branch-card__photo {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--navy);
+}
 .branch-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 
 .branch-card__top {
