@@ -206,7 +206,7 @@ h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.25; }
 }
 
 .logo { display: flex; flex-direction: column; line-height: 1.1; flex-shrink: 0; }
-.logo__img { height: 46px; width: auto; display: block; mix-blend-mode: screen; }
+.logo__img { height: 46px; width: auto; display: block; filter: brightness(0) invert(1); }
 
 .nav { display: none; }
 .nav__list { display: flex; align-items: center; gap: 0.25rem; }
@@ -860,45 +860,48 @@ h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.25; }
 /* FLIP CARD wrapper */
 .recipe-flip {
     perspective: 1200px;
-    height: 480px;
+    height: 500px;
 }
 .recipe-card {
     position: relative;
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
     transition: transform 0.65s cubic-bezier(.4,0,.2,1);
-    cursor: default;
 }
-.recipe-card.is-flipped { transform: rotateY(180deg); }
+.recipe-card.is-flipped {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+}
 
 /* Caras */
 .recipe-card__front,
 .recipe-card__back {
     position: absolute;
-    inset: 0;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
     background: var(--white);
+    box-shadow: var(--shadow-sm);
 }
+.recipe-card__front { overflow: hidden; }
 .recipe-card__back {
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
     background: var(--navy);
     color: var(--cream);
     display: flex;
     flex-direction: column;
-    padding: 1.75rem;
+    padding: 1.6rem;
+    overflow: hidden;
 }
 
-/* Front hover */
-.recipe-card:not(.is-flipped) .recipe-card__front:hover {
-    box-shadow: var(--shadow-lg);
-}
-.recipe-card:not(.is-flipped) .recipe-card__front:hover .recipe-card__img {
-    transform: scale(1.05);
-}
+/* Front hover (solo cuando no está girada) */
+.recipe-card:not(.is-flipped) .recipe-card__front:hover { box-shadow: var(--shadow-lg); }
+.recipe-card:not(.is-flipped) .recipe-card__front:hover .recipe-card__img { transform: scale(1.05); }
 
 .recipe-card__img-wrap {
     position: relative;
@@ -973,51 +976,58 @@ h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.25; }
     border-bottom: 1px solid rgba(201,150,63,.3);
     padding-bottom: 0.8rem;
 }
-.recipe-back__list {
-    list-style: none;
-    padding: 0; margin: 0 0 1rem 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
+.recipe-back__section-label {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--gold-light);
+    margin: .9rem 0 .4rem;
+}
+/* Chips de ingredientes */
+.recipe-back__chips {
+    display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .2rem;
+}
+.recipe-back__chip {
+    background: rgba(201,150,63,.18);
+    border: 1px solid rgba(201,150,63,.35);
+    color: var(--cream);
+    border-radius: 50px;
+    padding: .22rem .65rem;
+    font-size: .75rem;
+    line-height: 1.4;
+}
+/* Pasos */
+.recipe-back__steps {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: .35rem;
     flex: 1;
 }
-.recipe-back__list li {
-    font-size: 0.82rem;
-    color: rgba(250,246,236,.85);
-    line-height: 1.5;
-    padding-left: 1rem;
-    position: relative;
+.recipe-back__steps li {
+    font-size: .8rem; color: rgba(250,246,236,.82);
+    line-height: 1.45; display: flex; gap: .5rem; align-items: flex-start;
 }
-.recipe-back__list li::before {
-    content: '·';
-    position: absolute;
-    left: 0;
-    color: var(--gold-light);
-    font-weight: 700;
+.recipe-back__steps li::before {
+    content: attr(data-n);
+    min-width: 18px; height: 18px;
+    background: var(--gold); color: var(--white);
+    border-radius: 50%; font-size: .65rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
 }
+/* Dato Tafí */
 .recipe-back__fact {
-    font-size: 0.78rem;
-    color: rgba(250,246,236,.55);
-    font-style: italic;
-    border-top: 1px solid rgba(201,150,63,.2);
-    padding-top: 0.8rem;
-    line-height: 1.5;
+    font-size: .74rem; color: rgba(250,246,236,.5);
+    font-style: italic; border-top: 1px solid rgba(201,150,63,.2);
+    padding-top: .65rem; margin-top: .6rem; line-height: 1.5;
 }
+/* Botón volver */
 .recipe-back__close {
-    margin-top: 1rem;
+    margin-top: .8rem;
     background: rgba(201,150,63,.15);
     border: 1px solid rgba(201,150,63,.4);
     color: var(--gold-light);
-    border-radius: 50px;
-    padding: 0.5rem 1.2rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    font-family: inherit;
-    transition: background .2s;
-    align-self: flex-start;
+    border-radius: 50px; padding: .45rem 1.1rem;
+    font-size: .72rem; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; cursor: pointer;
+    font-family: inherit; transition: background .2s; align-self: flex-start;
 }
 .recipe-back__close:hover { background: rgba(201,150,63,.3); }
 
