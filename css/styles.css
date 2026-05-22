@@ -205,8 +205,9 @@ h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.25; }
     gap: 1rem;
 }
 
-.logo { display: flex; flex-direction: column; line-height: 1.1; flex-shrink: 0; }
-.logo__img { height: 46px; width: auto; display: block; filter: brightness(0) invert(1); }
+.logo { display: flex; flex-direction: column; line-height: 1.1; flex-shrink: 0; text-decoration: none; }
+.logo__name { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; color: var(--cream); letter-spacing: .01em; }
+.logo__tagline { font-size: 0.58rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-light); }
 
 .nav { display: none; }
 .nav__list { display: flex; align-items: center; gap: 0.25rem; }
