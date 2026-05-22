@@ -857,15 +857,48 @@ h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.25; }
 
 .recetas__grid { display: grid; gap: 1.5rem; }
 
+/* FLIP CARD wrapper */
+.recipe-flip {
+    perspective: 1200px;
+    height: 480px;
+}
 .recipe-card {
-    background: var(--white);
+    position: relative;
+    width: 100%; height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(.4,0,.2,1);
+    cursor: default;
+}
+.recipe-card.is-flipped { transform: rotateY(180deg); }
+
+/* Caras */
+.recipe-card__front,
+.recipe-card__back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: var(--shadow-sm);
-    transition: var(--transition);
+    background: var(--white);
 }
-.recipe-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
-.recipe-card:hover .recipe-card__img { transform: scale(1.05); }
+.recipe-card__back {
+    transform: rotateY(180deg);
+    background: var(--navy);
+    color: var(--cream);
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem;
+}
+
+/* Front hover */
+.recipe-card:not(.is-flipped) .recipe-card__front:hover {
+    box-shadow: var(--shadow-lg);
+}
+.recipe-card:not(.is-flipped) .recipe-card__front:hover .recipe-card__img {
+    transform: scale(1.05);
+}
 
 .recipe-card__img-wrap {
     position: relative;
@@ -879,7 +912,6 @@ h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.25; }
     background-position: center;
     transition: transform 0.55s ease;
 }
-
 .recipe-card__time {
     position: absolute;
     top: 1rem; right: 1rem;
@@ -892,9 +924,7 @@ h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.25; }
     border-radius: 50px;
     backdrop-filter: blur(4px);
 }
-
 .recipe-card__body { padding: 1.5rem; }
-
 .recipe-card__cat {
     display: block;
     font-size: 0.68rem;
@@ -906,7 +936,6 @@ h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.25; }
 }
 .recipe-card__title { font-size: 1.1rem; color: var(--navy); margin-bottom: 0.6rem; line-height: 1.3; }
 .recipe-card__desc { font-size: 0.85rem; color: var(--text-mid); line-height: 1.62; margin-bottom: 1.25rem; }
-
 .recipe-card__link {
     display: inline-flex;
     align-items: center;
@@ -916,9 +945,81 @@ h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.25; }
     letter-spacing: 0.07em;
     text-transform: uppercase;
     color: var(--gold);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
     transition: var(--transition);
 }
 .recipe-card__link:hover { color: var(--navy); gap: 0.65rem; }
+
+/* Back face styles */
+.recipe-back__tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 0.6rem;
+    display: block;
+}
+.recipe-back__title {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--cream);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    border-bottom: 1px solid rgba(201,150,63,.3);
+    padding-bottom: 0.8rem;
+}
+.recipe-back__list {
+    list-style: none;
+    padding: 0; margin: 0 0 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex: 1;
+}
+.recipe-back__list li {
+    font-size: 0.82rem;
+    color: rgba(250,246,236,.85);
+    line-height: 1.5;
+    padding-left: 1rem;
+    position: relative;
+}
+.recipe-back__list li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--gold-light);
+    font-weight: 700;
+}
+.recipe-back__fact {
+    font-size: 0.78rem;
+    color: rgba(250,246,236,.55);
+    font-style: italic;
+    border-top: 1px solid rgba(201,150,63,.2);
+    padding-top: 0.8rem;
+    line-height: 1.5;
+}
+.recipe-back__close {
+    margin-top: 1rem;
+    background: rgba(201,150,63,.15);
+    border: 1px solid rgba(201,150,63,.4);
+    color: var(--gold-light);
+    border-radius: 50px;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background .2s;
+    align-self: flex-start;
+}
+.recipe-back__close:hover { background: rgba(201,150,63,.3); }
 
 /* ============================================================
    PANADERÍA POR MAYOR

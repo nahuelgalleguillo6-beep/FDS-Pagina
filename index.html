@@ -885,53 +885,109 @@
                 </div>
                 <div class="recetas__grid">
 
-                    <article class="recipe-card fade-up">
-                        <div class="recipe-card__img-wrap">
-                            <div class="recipe-card__img" style="background-image: url('images/Pagina/scones.jpg')" role="img" aria-label="Scones clásicos de Flor de Sauco" loading="lazy"></div>
+                    <!-- Scones -->
+                    <div class="recipe-flip fade-up">
+                      <article class="recipe-card">
+                        <div class="recipe-card__front">
+                          <div class="recipe-card__img-wrap">
+                            <div class="recipe-card__img" style="background-image: url('images/Pagina/scones.jpg')" role="img" aria-label="Scones clásicos de Flor de Sauco"></div>
                             <span class="recipe-card__time">25′</span>
-                        </div>
-                        <div class="recipe-card__body">
+                          </div>
+                          <div class="recipe-card__body">
                             <span class="recipe-card__cat">Panadería</span>
                             <h3 class="recipe-card__title">Scones clásicos de Flor de Sauco</h3>
                             <p class="recipe-card__desc">El compañero perfecto para el café de la tarde. Recetario simple para hacer en casa.</p>
-                            <a href="#recetas" class="recipe-card__link">
-                                Ver receta
-                                <svg width="16" height="16" aria-hidden="true"><use href="#i-arrow-right"/></svg>
-                            </a>
+                            <button class="recipe-card__link" onclick="flipCard(this)">
+                              Ver receta <svg width="16" height="16" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                            </button>
+                          </div>
                         </div>
-                    </article>
+                        <div class="recipe-card__back">
+                          <span class="recipe-back__tag">Panadería · 25 minutos</span>
+                          <h3 class="recipe-back__title">Scones clásicos</h3>
+                          <ul class="recipe-back__list">
+                            <li>300 g harina 0000</li>
+                            <li>80 g manteca fría en cubos</li>
+                            <li>100 ml leche fría</li>
+                            <li>1 huevo + 1 para pintar</li>
+                            <li>2 cdas azúcar, 1 cdita polvo de hornear, pizca de sal</li>
+                            <li>Frotar manteca con harina hasta textura arenosa</li>
+                            <li>Unir con leche y huevo sin amasar de más</li>
+                            <li>Cortar en círculos y hornear 200 °C, 18–20 min</li>
+                          </ul>
+                          <p class="recipe-back__fact">En Tafí del Valle, los scones se sirven con mermelada de saúco y queso de cabra de la zona — una combinación que no vas a encontrar en ningún otro lugar.</p>
+                          <button class="recipe-back__close" onclick="flipCard(this)">&#8592; Volver</button>
+                        </div>
+                      </article>
+                    </div>
 
-                    <article class="recipe-card fade-up">
-                        <div class="recipe-card__img-wrap">
-                            <div class="recipe-card__img" style="background-image: url('images/Pagina/mermelada-casera.jpeg')" role="img" aria-label="Mermelada casera de saúco" loading="lazy"></div>
+                    <!-- Mermelada -->
+                    <div class="recipe-flip fade-up">
+                      <article class="recipe-card">
+                        <div class="recipe-card__front">
+                          <div class="recipe-card__img-wrap">
+                            <div class="recipe-card__img" style="background-image: url('images/Pagina/mermelada-casera.jpeg')" role="img" aria-label="Mermelada casera de saúco"></div>
                             <span class="recipe-card__time">45′</span>
-                        </div>
-                        <div class="recipe-card__body">
+                          </div>
+                          <div class="recipe-card__body">
                             <span class="recipe-card__cat">Conservas</span>
                             <h3 class="recipe-card__title">Mermelada casera de saúco</h3>
                             <p class="recipe-card__desc">La receta que da nombre a nuestra casa, con la flor que crece en los Valles Calchaquíes.</p>
-                            <a href="#recetas" class="recipe-card__link">
-                                Ver receta
-                                <svg width="16" height="16" aria-hidden="true"><use href="#i-arrow-right"/></svg>
-                            </a>
+                            <button class="recipe-card__link" onclick="flipCard(this)">
+                              Ver receta <svg width="16" height="16" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                            </button>
+                          </div>
                         </div>
-                    </article>
+                        <div class="recipe-card__back">
+                          <span class="recipe-back__tag">Conservas · 45 minutos</span>
+                          <h3 class="recipe-back__title">Mermelada de saúco</h3>
+                          <ul class="recipe-back__list">
+                            <li>500 g bayas de saúco maduras</li>
+                            <li>350 g azúcar</li>
+                            <li>Jugo de 1 limón</li>
+                            <li>Lavar y despalillar las bayas</li>
+                            <li>Cocinar a fuego medio 40 min removiendo</li>
+                            <li>Envasar en frascos esterilizados en caliente</li>
+                          </ul>
+                          <p class="recipe-back__fact">El saúco — Sambucus nigra — crece silvestre a más de 2.000 metros en los Valles Calchaquíes. Sus flores perfuman el aire de Tafí cada primavera y sus bayas tienen propiedades antioxidantes reconocidas.</p>
+                          <button class="recipe-back__close" onclick="flipCard(this)">&#8592; Volver</button>
+                        </div>
+                      </article>
+                    </div>
 
-                    <article class="recipe-card fade-up">
-                        <div class="recipe-card__img-wrap">
-                            <div class="recipe-card__img" style="background-image: url('images/Pagina/pan-bollo.jpg')" role="img" aria-label="Pan casero de campo" loading="lazy"></div>
+                    <!-- Pan -->
+                    <div class="recipe-flip fade-up">
+                      <article class="recipe-card">
+                        <div class="recipe-card__front">
+                          <div class="recipe-card__img-wrap">
+                            <div class="recipe-card__img" style="background-image: url('images/Pagina/pan-bollo.jpg')" role="img" aria-label="Pan casero de campo"></div>
                             <span class="recipe-card__time">3 hs</span>
-                        </div>
-                        <div class="recipe-card__body">
+                          </div>
+                          <div class="recipe-card__body">
                             <span class="recipe-card__cat">Panadería</span>
                             <h3 class="recipe-card__title">Pan casero de campo</h3>
                             <p class="recipe-card__desc">Fermentación lenta, corteza crocante y miga aireada. Como el que hacemos cada mañana.</p>
-                            <a href="#recetas" class="recipe-card__link">
-                                Ver receta
-                                <svg width="16" height="16" aria-hidden="true"><use href="#i-arrow-right"/></svg>
-                            </a>
+                            <button class="recipe-card__link" onclick="flipCard(this)">
+                              Ver receta <svg width="16" height="16" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                            </button>
+                          </div>
                         </div>
-                    </article>
+                        <div class="recipe-card__back">
+                          <span class="recipe-back__tag">Panadería · 3 horas</span>
+                          <h3 class="recipe-back__title">Pan de campo</h3>
+                          <ul class="recipe-back__list">
+                            <li>500 g harina 000</li>
+                            <li>350 ml agua tibia</li>
+                            <li>10 g sal, 5 g levadura seca</li>
+                            <li>Mezclar y amasar 10 min hasta lisa</li>
+                            <li>Dejar leudar tapado 2 horas</li>
+                            <li>Dar forma, descanso 30 min, hornear 220 °C por 35 min</li>
+                          </ul>
+                          <p class="recipe-back__fact">En Tafí del Valle, la altitud cambia todo — el agua hierve a menor temperatura y las masas levan más rápido. El pan de Flor de Sauco se adapta a ese clima único de los Valles Calchaquíes desde 2007.</p>
+                          <button class="recipe-back__close" onclick="flipCard(this)">&#8592; Volver</button>
+                        </div>
+                      </article>
+                    </div>
 
                 </div>
             </div>
@@ -1022,5 +1078,11 @@
     </button>
 
     <script src="js/main.js"></script>
+    <script>
+      function flipCard(btn) {
+        var card = btn.closest('.recipe-card');
+        card.classList.toggle('is-flipped');
+      }
+    </script>
 </body>
 </html>
