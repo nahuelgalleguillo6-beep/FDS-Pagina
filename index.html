@@ -35,10 +35,17 @@
           "@type": "Bakery",
           "@id": "https://flordesaucosrl.com/#tafi",
           "name": "Flor de Sauco — Tafí del Valle",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "3.8",
+            "reviewCount": "107",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
           "description": "Panadería artesanal, cafetería, cervecería y heladería en Tafí del Valle, Tucumán. Pan recién horneado cada mañana desde 2007.",
           "url": "https://flordesaucosrl.com/",
           "logo": "https://flordesaucosrl.com/images/Pagina/logo-definitivo-1.png",
-          "image": "https://flordesaucosrl.com/images/Pagina/tafi.jpeg",
+          "image": "https://flordesaucosrl.com/images/Pagina/tafi.webp",
           "foundingDate": "2007",
           "priceRange": "$$",
           "servesCuisine": ["Panadería artesanal", "Cafetería", "Heladería", "Cervecería"],
@@ -74,7 +81,7 @@
           "description": "Panadería artesanal y cafetería frente al Dique La Angostura, El Mollar, Tucumán.",
           "url": "https://flordesaucosrl.com/",
           "logo": "https://flordesaucosrl.com/images/Pagina/logo-definitivo-1.png",
-          "image": "https://flordesaucosrl.com/images/Pagina/frente-las-nubes.jpeg",
+          "image": "https://flordesaucosrl.com/images/Pagina/frente-las-nubes.webp",
           "priceRange": "$$",
           "address": {
             "@type": "PostalAddress",
@@ -99,7 +106,7 @@
           "description": "Panadería artesanal, cafetería y heladería en Yerba Buena, Gran San Miguel de Tucumán.",
           "url": "https://flordesaucosrl.com/",
           "logo": "https://flordesaucosrl.com/images/Pagina/logo-definitivo-1.png",
-          "image": "https://flordesaucosrl.com/images/Pagina/flor-de-sauco-yerbabuena.jpeg",
+          "image": "https://flordesaucosrl.com/images/Pagina/flor-de-sauco-yerbabuena.webp",
           "priceRange": "$$",
           "address": {
             "@type": "PostalAddress",
@@ -128,6 +135,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="preload" as="image" href="images/Pagina/pan-bollo.webp" type="image/webp">
 </head>
 <body>
 
@@ -248,7 +256,7 @@
             <div class="hero__slides">
 
                 <!-- Slide 1 · Panadería -->
-                <div class="hero__slide is-active" style="background-image: url('images/Pagina/pan-bollo.jpg')" aria-label="Slide 1 de 4: Panadería">
+                <div class="hero__slide is-active" style="background-image: url('images/Pagina/pan-bollo.webp')" aria-label="Slide 1 de 4: Panadería">
                     <div class="hero__overlay"></div>
                     <div class="container hero__slide-content">
                         <span class="hero__eyebrow">Desde 2007 · Tafí del Valle</span>
@@ -262,7 +270,7 @@
                 </div>
 
                 <!-- Slide 2 · Cafetería -->
-                <div class="hero__slide" style="background-image: url('images/Pagina/medialuna.jpeg')" aria-label="Slide 2 de 4: Cafetería">
+                <div class="hero__slide" style="background-image: url('images/Pagina/medialuna.webp')" aria-label="Slide 2 de 4: Cafetería">
                     <div class="hero__overlay"></div>
                     <div class="container hero__slide-content">
                         <span class="hero__eyebrow">Cafetería</span>
@@ -276,7 +284,7 @@
                 </div>
 
                 <!-- Slide 3 · Cervecería -->
-                <div class="hero__slide" style="background-image: url('images/Pagina/tafi.jpeg')" aria-label="Slide 3 de 4: Cervecería">
+                <div class="hero__slide" style="background-image: url('images/Pagina/tafi.webp')" aria-label="Slide 3 de 4: Cervecería">
                     <div class="hero__overlay"></div>
                     <div class="container hero__slide-content">
                         <span class="hero__eyebrow">Cervecería</span>
@@ -290,7 +298,7 @@
                 </div>
 
                 <!-- Slide 4 · Heladería -->
-                <div class="hero__slide" style="background-image: url('images/Pagina/helado.jpg')" aria-label="Slide 4 de 4: Heladería">
+                <div class="hero__slide" style="background-image: url('images/Pagina/helado.webp')" aria-label="Slide 4 de 4: Heladería">
                     <div class="hero__overlay"></div>
                     <div class="container hero__slide-content">
                         <span class="hero__eyebrow">Heladería</span>
@@ -360,7 +368,7 @@
                 <div class="nosotros__grid fade-up">
                     <div class="nosotros__image-col">
                         <div class="nosotros__img-wrapper">
-                            <div class="nosotros__img" style="background-image: url('images/Pagina/flor-de-sauco-2007.jpeg')" role="img" aria-label="El equipo de Flor de Sauco en el local de Tafí del Valle"></div>
+                            <div class="nosotros__img" style="background-image: url('images/Pagina/flor-de-sauco-2007.webp')" role="img" aria-label="El equipo de Flor de Sauco en el local de Tafí del Valle"></div>
                             <div class="nosotros__badge">
                                 <span class="nosotros__badge-num">+19</span>
                                 <span class="nosotros__badge-label">años elaborando</span>
@@ -454,7 +462,7 @@
 
                     <!-- Tafí del Valle -->
                     <article class="branch-card fade-up">
-                        <div class="branch-card__photo" style="background-image: url('images/Pagina/tafi.jpeg')"></div>
+                        <div class="branch-card__photo" style="background-image: url('images/Pagina/tafi.webp')"></div>
                         <div class="branch-card__top">
                             <div class="branch-card__badge">Casa Principal</div>
                             <h3 class="branch-card__title">Tafí del Valle</h3>
@@ -500,7 +508,7 @@
 
                     <!-- Las Nubes / Angostura -->
                     <article class="branch-card fade-up">
-                        <div class="branch-card__photo" style="background-image: url('images/Pagina/frente-las-nubes.jpeg')"></div>
+                        <div class="branch-card__photo" style="background-image: url('images/Pagina/frente-las-nubes.webp')"></div>
                         <div class="branch-card__top">
                             <h3 class="branch-card__title">Las Nubes / Angostura</h3>
                             <p class="branch-card__region">Frente al Dique La Angostura</p>
@@ -541,7 +549,7 @@
 
                     <!-- Yerba Buena -->
                     <article class="branch-card fade-up">
-                        <div class="branch-card__photo" style="background-image: url('images/Pagina/flor-de-sauco-yerbabuena.jpeg')"></div>
+                        <div class="branch-card__photo" style="background-image: url('images/Pagina/flor-de-sauco-yerbabuena.webp')"></div>
                         <div class="branch-card__top">
                             <h3 class="branch-card__title">Yerba Buena</h3>
                             <p class="branch-card__region">Gran San Miguel de Tucumán</p>
@@ -996,7 +1004,7 @@
                       <article class="recipe-card">
                         <div class="recipe-card__front">
                           <div class="recipe-card__img-wrap">
-                            <div class="recipe-card__img" style="background-image: url('images/Pagina/scones.jpg')" role="img" aria-label="Scones clásicos de Flor de Sauco"></div>
+                            <div class="recipe-card__img" style="background-image: url('images/Pagina/scones.webp')" role="img" aria-label="Scones clásicos de Flor de Sauco"></div>
                             <span class="recipe-card__time">25′</span>
                           </div>
                           <div class="recipe-card__body">
@@ -1037,7 +1045,7 @@
                       <article class="recipe-card">
                         <div class="recipe-card__front">
                           <div class="recipe-card__img-wrap">
-                            <div class="recipe-card__img" style="background-image: url('images/Pagina/mermelada-casera.jpeg')" role="img" aria-label="Mermelada casera de saúco"></div>
+                            <div class="recipe-card__img" style="background-image: url('images/Pagina/mermelada-casera.webp')" role="img" aria-label="Mermelada casera de saúco"></div>
                             <span class="recipe-card__time">45′</span>
                           </div>
                           <div class="recipe-card__body">
@@ -1076,7 +1084,7 @@
                       <article class="recipe-card">
                         <div class="recipe-card__front">
                           <div class="recipe-card__img-wrap">
-                            <div class="recipe-card__img" style="background-image: url('images/Pagina/pan-bollo.jpg')" role="img" aria-label="Pan casero de campo"></div>
+                            <div class="recipe-card__img" style="background-image: url('images/Pagina/pan-bollo.webp')" role="img" aria-label="Pan casero de campo"></div>
                             <span class="recipe-card__time">3 hs</span>
                           </div>
                           <div class="recipe-card__body">
