@@ -1,0 +1,16 @@
+{
+  "name": "Flor de Sauco · Carta",
+  "short_name": "Carta",
+  "description": "Carta de pasteles de Flor de Sauco",
+  "start_url": "/carta?kiosco=1",
+  "scope": "/carta",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
+  "background_color": "#FBF4E9",
+  "theme_color": "#43281B",
+  "icons": [
+    { "src": "/images/carta/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/images/carta/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/images/carta/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
