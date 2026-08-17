@@ -4,6 +4,9 @@
 # Fotos originales no usadas en el sitio
 images/Foto Producto/
 
+# HTML fuente de la carta (2,2MB con base64) — el resultado versionado es carta.html + images/carta/
+carta-tablet-flor-de-sauco.html
+
 # Dependencias
 node_modules/
 

@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Flor de Sauco · Carta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #FBF4E9;
+    --cream-alt: #F3E8D8;
+    --paper: #FFFDF9;
+    --brown-900: #43281B;
+    --brown-700: #6B4226;
+    --brown-500: #8B6248;
+    --brown-300: #C7A788;
+    --line: #E7D7C1;
+
+    --accent-tortas: #C9705A;
+    --accent-tortas-bg: #F7E4DE;
+    --accent-clasicas: #B4823A;
+    --accent-clasicas-bg: #F3E6CB;
+    --accent-natural: #7C9A5C;
+    --accent-natural-bg: #E7EFD9;
+    --accent-placer: #A5476B;
+    --accent-placer-bg: #F3DEE6;
+
+    --shadow: 0 4px 12px rgba(67, 40, 27, 0.07);
+    --shadow-soft: 0 2px 6px rgba(67, 40, 27, 0.06);
+  }
+
+  *{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body{
+    margin:0; padding:0; width:100%; overflow-x:hidden;
+    background: var(--cream);
+    color: var(--brown-900);
+    font-family: 'Nunito Sans', -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  h1,h2,h3{ font-family:'Playfair Display', Georgia, serif; margin:0; }
+
+  /* ---------- Header ---------- */
+  header{
+    text-align:center;
+    padding: 16px 16px 12px;
+    background: linear-gradient(180deg, var(--cream-alt), var(--cream));
+  }
+  .logo-mark{ font-size: 1.4rem; line-height:1; margin-bottom:2px; }
+  header h1{
+    font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+    font-weight:700;
+    font-style: italic;
+    color: var(--brown-900);
+    letter-spacing: 0.4px;
+  }
+  header p{
+    margin-top: 3px;
+    font-size: 0.68rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--brown-500);
+    font-weight: 600;
+  }
+  .divider{
+    width: 60px; height: 1px; margin: 9px auto 0;
+    background: linear-gradient(90deg, transparent, var(--brown-300), transparent);
+  }
+
+  /* ---------- Contenido ---------- */
+  main{ max-width: 1320px; margin: 0 auto; padding: 6px 16px 30px; }
+
+  .section-title{
+    display:flex; align-items:center; gap:10px;
+    font-size: 1rem;
+    font-weight:600;
+    color: var(--brown-700);
+    margin: 20px 2px 10px;
+  }
+  .section-title::after{
+    content:""; flex:1; height:1px; background: var(--line);
+  }
+  .section-title:first-child{ margin-top: 6px; }
+
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+    gap: 12px;
+  }
+
+  .card{
+    background: var(--paper);
+    border-radius: 12px;
+    padding: 10px 10px 11px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line);
+  }
+
+  .card-photo-wrap{
+    position:relative;
+    width:100%;
+    aspect-ratio: 4 / 3;
+    border-radius:8px;
+    overflow:hidden;
+    margin-bottom:8px;
+    background: var(--cream-alt);
+  }
+  .card-photo-wrap img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .card-photo-wrap.placeholder{ display:flex; align-items:center; justify-content:center; }
+  .placeholder-icon{ font-size:1.8rem; opacity:0.55; }
+  .photo-badge{
+    position:absolute; top:6px; left:6px;
+    width:24px; height:24px;
+    border-radius:50%;
+    background: rgba(255,253,249,0.92);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.8rem;
+    box-shadow: var(--shadow-soft);
+  }
+  .card h3{ font-size:0.98rem; font-weight:600; color: var(--brown-900); line-height:1.2; margin-bottom:2px; }
+
+  .spec{ margin-top:6px; }
+  .spec-row{ display:flex; gap:6px; padding:4px 0; border-top: 1px dashed var(--line); }
+  .spec-row:first-child{ border-top:none; }
+  .spec-label{
+    flex: 0 0 50px;
+    font-size:0.55rem;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:0.6px;
+    color: var(--brown-500);
+    padding-top:2px;
+  }
+  .spec-text{ font-size:0.76rem; line-height:1.35; color: var(--brown-700); }
+
+  /* acentos por categoría */
+  .card[data-accent="tortas"] .card-photo-wrap.placeholder{ background: var(--accent-tortas-bg); }
+  .card[data-accent="tortas"]{ border-top: 3px solid var(--accent-tortas); }
+  .card[data-accent="clasicas"] .card-photo-wrap.placeholder{ background: var(--accent-clasicas-bg); }
+  .card[data-accent="clasicas"]{ border-top: 3px solid var(--accent-clasicas); }
+  .card[data-accent="natural"] .card-photo-wrap.placeholder{ background: var(--accent-natural-bg); }
+  .card[data-accent="natural"]{ border-top: 3px solid var(--accent-natural); }
+  .card[data-accent="placer"] .card-photo-wrap.placeholder{ background: var(--accent-placer-bg); }
+  .card[data-accent="placer"]{ border-top: 3px solid var(--accent-placer); }
+
+  footer{
+    text-align:center;
+    padding: 18px 20px 28px;
+    color: var(--brown-500);
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 700px){
+    .grid{ grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap:10px; }
+    .spec-label{ flex-basis: 44px; font-size:0.52rem; }
+    .spec-text{ font-size:0.72rem; }
+    .card h3{ font-size:0.9rem; }
+  }
+</style>
+
+<style>
+  /* ============ Barra de acciones ============ */
+  .toolbar{
+    position: sticky; top:0; z-index:30;
+    display:flex; gap:9px; justify-content:center;
+    padding: 9px 16px;
+    background: rgba(251,244,233,0.94);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .act{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:inherit; font-size:0.8rem; font-weight:800; letter-spacing:0.2px;
+    color:#fff; border:none; border-radius:999px;
+    padding:10px 20px; cursor:pointer;
+    transition: transform .12s ease;
+  }
+  .act:active{ transform: scale(.94); }
+  .act-quiz{ background: linear-gradient(135deg, var(--brown-700), var(--accent-clasicas)); box-shadow:0 3px 12px rgba(107,66,38,0.3); }
+  .act-dado{ background: linear-gradient(135deg, var(--accent-tortas), var(--accent-placer)); box-shadow:0 3px 12px rgba(165,71,107,0.3); }
+  .act .ico{ font-size:1rem; display:inline-block; }
+  .act-dado .ico{ animation: wiggle 3.4s ease-in-out infinite; }
+  @keyframes wiggle{
+    0%,88%,100%{ transform: rotate(0); }
+    91%{ transform: rotate(-18deg); } 94%{ transform: rotate(16deg); } 97%{ transform: rotate(-8deg); }
+  }
+
+  /* ============ Tarjetas ============ */
+  .card{ transition: transform .2s ease; cursor:pointer; position:relative; }
+  .card:active{ transform: scale(.975); }
+  .card.is-picked{ outline:3px solid var(--accent-placer); outline-offset:2px; border-radius:12px; }
+
+  .like{
+    position:absolute; right:6px; bottom:6px; z-index:2;
+    display:inline-flex; align-items:center; gap:4px;
+    border:none; cursor:pointer;
+    background: rgba(255,253,249,0.93);
+    color: var(--brown-700);
+    border-radius:999px; padding:4px 9px;
+    font-family:inherit; font-size:0.68rem; font-weight:800;
+    box-shadow: 0 2px 7px rgba(40,22,14,0.25);
+    transition: transform .15s ease;
+  }
+  .like .hh{ font-size:0.85rem; line-height:1; }
+  .like.on{ background:#C9304E; color:#fff; }
+  .like.bump{ animation: bump .42s cubic-bezier(.2,.9,.3,1.5); }
+  @keyframes bump{ 0%{transform:scale(1)} 40%{transform:scale(1.32)} 100%{transform:scale(1)} }
+  .like .ln.zero{ display:none; }
+
+  .crown{
+    position:absolute; top:-9px; left:50%; transform:translateX(-50%);
+    z-index:3; white-space:nowrap;
+    background: linear-gradient(135deg, #C89B3C, #E5C87A);
+    color:#43281B; font-size:0.55rem; font-weight:900;
+    letter-spacing:0.7px; text-transform:uppercase;
+    padding:3px 10px; border-radius:999px;
+    box-shadow:0 2px 8px rgba(67,40,27,0.3);
+  }
+  .crown[hidden]{ display:none; }
+
+  /* ============ Ficha grande ============ */
+  .modal[hidden], .quiz[hidden], .attract[hidden]{ display:none; }
+  .modal{ position:fixed; inset:0; z-index:60; display:flex; align-items:center; justify-content:center; padding:20px; }
+  .modal-scrim{ position:absolute; inset:0; background:rgba(40,22,14,0.62); backdrop-filter:blur(3px); }
+  .modal-card{
+    position:relative; width:min(560px,100%); max-height:92vh; overflow:auto;
+    background:var(--paper); border-radius:18px;
+    box-shadow:0 20px 50px rgba(40,22,14,0.4);
+    animation: cardIn .3s cubic-bezier(.2,.9,.3,1.2) both;
+  }
+  @keyframes cardIn{ from{opacity:0; transform:translateY(20px) scale(.94)} to{opacity:1; transform:none} }
+  .modal-photo{ position:relative; width:100%; aspect-ratio:4/3; overflow:hidden; border-radius:18px 18px 0 0; background:var(--cream-alt); }
+  .modal-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .modal-body{ padding:16px 20px 20px; }
+  .modal-eyebrow{ margin:0 0 3px; font-size:0.62rem; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:var(--brown-500); }
+  .modal-card h3{ font-size:1.5rem; margin:0 0 10px; color:var(--brown-900); }
+  .modal-spec .spec-row{ padding:7px 0; }
+  .modal-spec .spec-label{ flex-basis:74px; font-size:0.62rem; }
+  .modal-spec .spec-text{ font-size:0.94rem; }
+  .modal-close{
+    position:absolute; top:9px; right:9px; z-index:3;
+    width:34px; height:34px; border-radius:50%; border:none; cursor:pointer;
+    background:rgba(255,253,249,0.92); color:var(--brown-700); font-size:1.3rem; line-height:1;
+    box-shadow:0 2px 8px rgba(40,22,14,0.25);
+  }
+
+  .pairing{
+    display:flex; gap:10px; align-items:flex-start;
+    margin-top:14px; padding:11px 13px;
+    background: var(--cream-alt);
+    border-left:3px solid var(--accent-clasicas);
+    border-radius:0 10px 10px 0;
+  }
+  .pairing .pico{ font-size:1.15rem; line-height:1.1; }
+  .pairing .ptxt{ font-size:0.86rem; line-height:1.4; color:var(--brown-700); }
+  .pairing .ptxt b{ display:block; font-size:0.6rem; letter-spacing:1.3px; text-transform:uppercase; color:var(--brown-500); margin-bottom:2px; }
+
+  .modal-like{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    width:100%; margin-top:14px; padding:12px;
+    font-family:inherit; font-size:0.84rem; font-weight:800;
+    border:1.5px solid var(--line); border-radius:999px;
+    background:var(--paper); color:var(--brown-700); cursor:pointer;
+    transition: transform .12s ease;
+  }
+  .modal-like:active{ transform:scale(.97); }
+  .modal-like.on{ background:#C9304E; border-color:#C9304E; color:#fff; }
+
+  .alts{ margin-top:16px; }
+  .alts p{ margin:0 0 8px; font-size:0.62rem; font-weight:800; letter-spacing:1.3px; text-transform:uppercase; color:var(--brown-500); }
+  .alts-row{ display:flex; gap:9px; }
+  .alt{
+    flex:1; border:1px solid var(--line); border-radius:11px; overflow:hidden;
+    background:var(--paper); cursor:pointer; padding:0; font-family:inherit;
+    transition: transform .12s ease;
+  }
+  .alt:active{ transform:scale(.96); }
+  .alt img{ width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
+  .alt span{ display:block; padding:6px 4px; font-size:0.7rem; font-weight:700; color:var(--brown-700); }
+  .alts[hidden]{ display:none; }
+
+  .again-btn{
+    width:100%; margin-top:12px;
+    font-family:inherit; font-size:0.82rem; font-weight:800; color:#fff;
+    border:none; border-radius:999px; padding:12px;
+    background:linear-gradient(135deg, var(--accent-tortas), var(--accent-placer)); cursor:pointer;
+  }
+  .again-btn[hidden]{ display:none; }
+  .modal.is-spinning .modal-card{ animation:none; }
+  .modal.is-spinning .again-btn,
+  .modal.is-spinning .modal-close,
+  .modal.is-spinning .pairing,
+  .modal.is-spinning .modal-like,
+  .modal.is-spinning .alts{ visibility:hidden; }
+  .modal.is-landed .modal-card{ animation: land .45s cubic-bezier(.2,.9,.3,1.4) both; }
+  @keyframes land{ 0%{transform:scale(1)} 35%{transform:scale(1.05)} 100%{transform:scale(1)} }
+
+  /* ============ ¿Qué te llevo? ============ */
+  .quiz{ position:fixed; inset:0; z-index:70; display:flex; align-items:center; justify-content:center; padding:20px;
+         background:rgba(40,22,14,0.72); backdrop-filter:blur(4px); }
+  .quiz-card{
+    position:relative; width:min(520px,100%);
+    background:var(--paper); border-radius:20px; padding:26px 24px 24px; text-align:center;
+    box-shadow:0 20px 50px rgba(40,22,14,0.45);
+    animation: cardIn .32s cubic-bezier(.2,.9,.3,1.2) both;
+  }
+  .quiz-step{ font-size:0.62rem; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:var(--brown-500); margin:0 0 8px; }
+  .quiz-card h3{ font-size:1.45rem; margin:0 0 20px; color:var(--brown-900); line-height:1.25; }
+  .quiz-opts{ display:flex; flex-direction:column; gap:10px; }
+  .qopt{
+    display:flex; align-items:center; gap:12px; text-align:left;
+    font-family:inherit; font-size:0.95rem; font-weight:700; color:var(--brown-900);
+    background:var(--cream); border:1.5px solid var(--line); border-radius:14px;
+    padding:14px 16px; cursor:pointer;
+    transition: transform .12s ease, border-color .16s ease, background .16s ease;
+  }
+  .qopt:active{ transform:scale(.97); }
+  .qopt:hover{ border-color:var(--brown-300); background:var(--cream-alt); }
+  .qopt .qico{ font-size:1.5rem; line-height:1; }
+  .quiz-close{
+    position:absolute; top:10px; right:10px;
+    width:32px; height:32px; border-radius:50%; border:none; cursor:pointer;
+    background:var(--cream-alt); color:var(--brown-700); font-size:1.25rem; line-height:1;
+  }
+
+  /* ============ Modo vidriera ============ */
+  .attract{ position:fixed; inset:0; z-index:80; background:#2A1810; overflow:hidden; animation: fadeIn .6s ease both; }
+  @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+  .attract-img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    opacity:0; transition: opacity 1.15s ease;
+  }
+  .attract-img.is-live{ opacity:1; animation: kenburns 9s linear both; }
+  @keyframes kenburns{ from{transform:scale(1.03)} to{transform:scale(1.15)} }
+  .attract-veil{
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(30,16,10,0.55) 0%, rgba(30,16,10,0.05) 32%, rgba(30,16,10,0.86) 100%);
+  }
+  .attract-text{
+    position:absolute; left:0; right:0; bottom:11%;
+    text-align:center; padding:0 8vw; color:#fff;
+    animation: riseIn .8s ease .15s both;
+  }
+  @keyframes riseIn{ from{opacity:0; transform:translateY(16px)} to{opacity:1; transform:none} }
+  .attract-brand{ margin:0 0 8px; font-size:0.72rem; font-weight:800; letter-spacing:4px; text-transform:uppercase; color:rgba(255,255,255,0.72); }
+  .attract-text h2{ font-size:clamp(2rem,6vw,3.6rem); font-style:italic; margin:0; text-shadow:0 3px 20px rgba(0,0,0,0.5); }
+  .attract-text p.ad{ margin:12px auto 0; max-width:44ch; font-size:clamp(0.85rem,1.9vw,1.05rem); line-height:1.5; color:rgba(255,255,255,0.92); text-shadow:0 2px 12px rgba(0,0,0,0.5); }
+  .attract-flag{
+    display:inline-block; margin-bottom:12px;
+    background:linear-gradient(135deg,#C89B3C,#E5C87A); color:#3A2214;
+    font-size:0.62rem; font-weight:900; letter-spacing:1.6px; text-transform:uppercase;
+    padding:5px 14px; border-radius:999px;
+  }
+  .attract-flag[hidden]{ display:none; }
+  .attract-hint{
+    position:absolute; left:0; right:0; bottom:3.5%; text-align:center; margin:0;
+    font-size:0.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+    color:rgba(255,255,255,0.72); animation: breathe 2.6s ease-in-out infinite;
+  }
+  @keyframes breathe{ 0%,100%{opacity:.45} 50%{opacity:1} }
+
+  /* pantalla final con QR */
+  .attract-qr{
+    position:absolute; inset:0; z-index:2;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px;
+    background: radial-gradient(circle at 50% 40%, #5A3620, #2A1810 72%);
+    color:#fff; text-align:center; padding:6vh 8vw;
+    animation: fadeIn .7s ease both;
+  }
+  .attract-qr[hidden]{ display:none; }
+  .attract-qr img{ width:min(30vh,240px); border-radius:14px; box-shadow:0 10px 34px rgba(0,0,0,0.45); }
+  .attract-qr h2{ font-size:clamp(1.5rem,4.4vw,2.5rem); font-style:italic; margin:0; }
+  .attract-qr p{ margin:0; font-size:clamp(0.82rem,1.9vw,1rem); color:rgba(255,255,255,0.85); max-width:34ch; line-height:1.5; }
+
+  @media (max-width:700px){
+    .act{ font-size:0.74rem; padding:9px 15px; }
+    .alt span{ font-size:0.64rem; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.01ms !important; transition-duration:.01ms !important; }
+  }
+
+  /* Link discreto de vuelta al sitio (se oculta en modo kiosco) */
+  .volver-home{
+    position:fixed; left:12px; bottom:12px; z-index:25;
+    display:inline-flex; align-items:center; gap:5px;
+    font-family:inherit; font-size:0.72rem; font-weight:700; letter-spacing:0.3px;
+    color:var(--brown-700); text-decoration:none;
+    background:rgba(255,253,249,0.92); border:1px solid var(--line);
+    border-radius:999px; padding:7px 13px;
+    box-shadow: var(--shadow-soft);
+  }
+  .volver-home:hover{ color:var(--brown-900); border-color:var(--brown-300); }
+  .volver-home[hidden]{ display:none; }
+</style>
+</head>
+<body>
+
+<a class="volver-home" href="/" aria-label="Volver a flordesaucosrl.com">← Inicio</a>
+
+<header>
+  <div class="logo-mark">🌼</div>
+  <h1>Flor de Sauco</h1>
+  <p>Pastelería Artesanal</p>
+  <div class="divider"></div>
+</header>
+
+<div class="toolbar">
+  <button class="act act-quiz" id="quizBtn"><span class="ico">🍰</span>¿Qué te llevo?</button>
+  <button class="act act-dado" id="surpriseBtn"><span class="ico">🎲</span>Sorprendeme</button>
+</div>
+
+<main>
+
+  <!-- ===================== TORTAS ===================== -->
+  <section id="panel-tortas">
+    <h2 class="section-title">Tortas</h2>
+    <div class="grid">
+
+      <article class="card" data-accent="tortas" data-tags="frutal liviana" data-nombre="Primavera" tabindex="0">
+        <div class="card-photo-wrap">
+          <img src="images/carta/primavera.jpg" alt="Torta Primavera" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');">
+          <span class="photo-badge">🌸</span>
+          <button class="like" type="button" aria-label="Me gusta"><span class="hh">♡</span><span class="ln">0</span></button>
+        </div>
+        <h3>Primavera</h3>
+        <div class="spec">
+          <div class="spec-row"><span class="spec-label">Masa</span><span class="spec-text">Bizcochuelo de vainilla, suave y esponjoso.</span></div>
+          <div class="spec-row"><span class="spec-label">Relleno</span><span class="spec-text">Crema chantilly y frutas frescas de estación.</span></div>
+          <div class="spec-row"><span class="spec-label">Cobertura</span><span class="spec-text">Crema chantilly lisa, decorada con flores comestibles y frutas.</span></div>
+        </div>
+      </article>
+
+      <article class="card" data-accent="tortas" data-tags="chocolate frutal" data-nombre="Selva Negra" tabindex="0">
+        <div class="card-photo-wrap">
+          <img src="images/carta/selva-negra.jpg" alt="Torta Selva Negra" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');">
+          <span class="photo-badge">🍒</span>
+          <button class="like" type="button" aria-label="Me gusta"><span class="hh">♡</span><span class="ln">0</span></button>
+        </div>
+        <h3>Selva Negra</h3>
+        <div class="spec">
+          <div class="spec-row"><span class="spec-label">Masa</span><span class="spec-text">Bizcochuelo de chocolate embebido en almíbar con un toque de kirsch.</span></div>
+          <div class="spec-row"><span class="spec-label">Relleno</span><span class="spec-text">Crema chantilly y cerezas al marrasquino.</span></div>
+          <div class="spec-row"><span class="spec-label">Cobertura</span><span class="spec-text">Crema chantilly, virutas de chocolate y cerezas.</span></div>
+        </div>
+      </article>
+
+      <article class="card" data-accent="tortas" data-tags="chocolate" data-nombre="Bombón" tabindex="0">
+        <div class="card-photo-wrap">
+          <img src="images/carta/bombon.jpg" alt="Torta Bombón" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');">
+          <span class="photo-badge">🍫</span>
+          <button class="like" type="button" aria-label="Me gusta"><span class="hh">♡</span><span class="ln">0</span></button>
+        </div>
+        <h3>Bombón</h3>
+        <div class="spec">
+          <div class="spec-row"><span class="spec-label">Masa</span><span class="spec-text">Bizcochuelo de chocolate húmedo.</span></div>
+          <div class="spec-row"><span class="spec-label">Relleno</span><span class="spec-text">Ganache de chocolate y crema.</span></div>
+          <div class="spec-row"><span class="spec-label">Cobertura</span><span class="spec-text">Baño de chocolate espejo, bien brillante.</span></div>
+        </div>
+      </article>
+
+      <article class="card" data-accent="tortas" data-tags="cafe chocolate" data-nombre="Moka" tabindex="0">
+        <div class="card-photo-wrap">
+          <img src="images/carta/moka.jpg" alt="Torta Moka" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');">
+          <span class="photo-badge">☕</span>
+          <button class="like" type="button" aria-label="Me gusta"><span class="hh">♡</span><span class="ln">0</span></button>
+        </div>
+        <h3>Moka</h3>
+        <div class="spec">
+          <div class="spec-row"><span class="spec-label">Masa</span><span class="spec-text">Bizcochuelo embebido en almíbar de café.</span></div>
+          <div class="spec-row"><span class="spec-label">Relleno</span><span class="spec-text">Crema de manteca al moka.</span></div>
+          <div class="spec-row"><span class="spec-label">Cobertura</span><span class="spec-text">Crema de manteca al moka, decorada con granos de café.</span></div>
+        </div>
+      </article>
+
+      <article class="card" data-accent="tortas" data-tags="dulcedeleche merengue nueces" data-nombre="María Luisa" tabindex="0">
+        <div class="card-photo-wrap">
+          <img src="images/carta/maria-luisa.jpg" alt="Torta María Luisa" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');">
+          <span class="photo-badge">🍯</span>
+          <button class="like" type="button" aria-label="Me gusta"><span class="hh">♡</span><span class="ln">0</span></button>
+        </div>
+        <h3>María Luisa</h3>
+        <div class="spec">
+          <div class="spec-row"><span class="spec-label">Masa</span><span class="spec-text">Finas capas de bizcochuelo tipo obleas.</span></div>
+          <div class="spec-row"><span class="spec-label">Relleno</span><span class="spec-text">Dulce de leche repostero entre cada capa.</span></div>
+          <div class="spec-row"><span class="spec-label">Cobertura</span><span class="spec-text">Merengue italiano flameado y almendras tostadas.</span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===================== TARTAS ===================== -->
+  <section id="panel-tartas">
+
+    <!-- Las Clásicas -->
+    <div id="sub-clasicas">
+      <h2 class="section-title">Tartas · Las Clásicas</h2>
+      <div class="grid">
+
+        <article class="card" data-accent="clasicas" data-tags="frutal" data-nombre="Pastafrola" tabindex="0">
+          <div class="card-photo-wrap">
+            <img src="images/carta/pastafrola.jpg" alt="Pastafrola" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');">
+            <span class="photo-badge">🍐</span>
+            <button class="like" type="button" aria-label="Me gusta"><span class="hh">♡</span><span class="ln">0</span></button>
+        </div>
+          <h3>Pastafrola</h3>
+          <div class="spec">
+            <div class="spec-row"><span class="spec-label">Masa</span><span class="spec-text">Masa frola tradicional, tierna y friable.</span></div>
+            <div class="spec-row"><span class="spec-label">Relleno</span><span class="spec-text">Dulce de membrillo casero.</span></div>
+            <div class="spec-row"><span class="spec-label">Cobertura</span><span class="spec-text">Enrejado clásico de masa, dorado al horno.</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-accent="clasicas" data-tags="frutal liviana merengue" data-nombre="Lemon Pie" tabindex="0">
+          <div class="card-photo-wrap">
+            <img src="images/carta/lemon-pie.jpg" alt="Lemon Pie" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');">
+            <span class="photo-badge">🍋</span>
+            <button class="like" type="button" aria-label="Me gusta"><span class="hh">♡</span><span class="ln">0</span></button>
+        </div>
+          <h3>Lemon Pie</h3>
+          <div class="spec">
+            <div class="spec-row"><span class="spec-label">Masa</span><span class="spec-text">Masa quebrada dulce.</span></div>
+            <div class="spec-row"><span class="spec-label">Relleno</span><span class="spec-text">Crema de limón fresca.</span></div>
+            <div class="spec-row"><span class="spec-label">Cobertura</span><span class="spec-text">Merengue italiano flameado.</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-accent="clasicas" data-tags="dulcedeleche merengue nueces" data-nombre="Cabsha" tabindex="0">
+          <div class="card-photo-wrap">
+            <img src="images/carta/cabsha.jpg" alt="Cabsha" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');">
+            <span class="photo-badge">🌰</span>
+            <button class="like" type="button" aria-label="Me gusta"><span class="hh">♡</span><span class="ln">0</span></button>
+        </div>
+          <h3>Cabsha</h3>
+          <div class="spec">
+            <div class="spec-row"><span class="spec-label">Masa</span><span class="spec-text">Masa quebrada.</span></div>
+            <div class="spec-row"><span class="spec-label">Relleno</span><span class="spec-text">Dulce de leche repostero y nueces.</span></div>
+            <div class="spec-row"><span class="spec-label">Cobertura</span><span class="spec-text">Merengue tostado.</span></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Dulzura Natural -->
+    <div id="sub-natural">
+      <h2 class="section-title">Tartas · Dulzura Natural</h2>
+      <div class="grid">
+
+        <article class="card" data-accent="natural" data-tags="frutal liviana" data-nombre="Maracuyá" tabindex="0">
+          <div class="card-photo-wrap">
+            <img src="images/carta/maracuya.jpg" alt="Maracuyá" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');">
+            <span class="photo-badge">🌺</span>
+            <button class="like" type="button" aria-label="Me gusta"><span class="hh">♡</span><span class="ln">0</span></button>
+        </div>
+          <h3>Maracuyá</h3>
+          <div class="spec">
+            <div class="spec-row"><span class="spec-label">Masa</span><span class="spec-text">Masa quebrada dulce.</span></div>
+            <div class="spec-row"><span class="spec-label">Relleno</span><span class="spec-text">Mousse de maracuyá.</span></div>
+            <div class="spec-row"><span class="spec-label">Cobertura</span><span class="spec-text">Espejo de fruta de la pasión.</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-accent="natural" data-tags="nueces" data-nombre="Coco" tabindex="0">
+          <div class="card-photo-wrap">
+            <img src="images/carta/coco.jpg" alt="Coco" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');">
+            <span class="photo-badge">🥥</span>
+            <button class="like" type="button" aria-label="Me gusta"><span class="hh">♡</span><span class="ln">0</span></button>
+        </div>
+          <h3>Coco</h3>
+          <div class="spec">
+            <div class="spec-row"><span class="spec-label">Masa</span><span class="spec-text">Masa quebrada.</span></div>
+            <div class="spec-row"><span class="spec-label">Relleno</span><span class="spec-text">Relleno cremoso de coco rallado.</span></div>
+            <div class="spec-row"><span class="spec-label">Cobertura</span><span class="spec-text">Coco rallado tostado.</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-accent="natural" data-tags="frutal" data-nombre="Manzana" tabindex="0">
+          <div class="card-photo-wrap">
+            <img src="images/carta/manzana.jpg" alt="Manzana" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');">
+            <span class="photo-badge">🍎</span>
+            <button class="like" type="button" aria-label="Me gusta"><span class="hh">♡</span><span class="ln">0</span></button>
+        </div>
+          <h3>Manzana</h3>
+          <div class="spec">
+            <div class="spec-row"><span class="spec-label">Masa</span><span class="spec-text">Masa quebrada con un toque de canela.</span></div>
+            <div class="spec-row"><span class="spec-label">Relleno</span><span class="spec-text">Manzanas frescas caramelizadas.</span></div>
+            <div class="spec-row"><span class="spec-label">Cobertura</span><span class="spec-text">Almíbar brillante y un toque de canela.</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-accent="natural" data-tags="dulcedeleche nueces" data-nombre="Nuez" tabindex="0">
+          <div class="card-photo-wrap">
+            <img src="images/carta/nuez.jpg" alt="Nuez" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');">
+            <span class="photo-badge">🌰</span>
+            <button class="like" type="button" aria-label="Me gusta"><span class="hh">♡</span><span class="ln">0</span></button>
+        </div>
+          <h3>Nuez</h3>
+          <div class="spec">
+            <div class="spec-row"><span class="spec-label">Masa</span><span class="spec-text">Masa quebrada.</span></div>
+            <div class="spec-row"><span class="spec-label">Relleno</span><span class="spec-text">Nueces caramelizadas y dulce de leche.</span></div>
+            <div class="spec-row"><span class="spec-label">Cobertura</span><span class="spec-text">Nueces enteras confitadas.</span></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Puro Placer -->
+    <div id="sub-placer">
+      <h2 class="section-title">Tartas · Puro Placer</h2>
+      <div class="grid">
+
+        <article class="card" data-accent="placer" data-tags="liviana" data-nombre="Ricota" tabindex="0">
+          <div class="card-photo-wrap">
+            <img src="images/carta/ricota.jpg" alt="Ricota" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');">
+            <span class="photo-badge">🧀</span>
+            <button class="like" type="button" aria-label="Me gusta"><span class="hh">♡</span><span class="ln">0</span></button>
+        </div>
+          <h3>Ricota</h3>
+          <div class="spec">
+            <div class="spec-row"><span class="spec-label">Masa</span><span class="spec-text">Masa quebrada.</span></div>
+            <div class="spec-row"><span class="spec-label">Relleno</span><span class="spec-text">Ricota, huevo, esencia de vainilla y ralladura de limón.</span></div>
+            <div class="spec-row"><span class="spec-label">Cobertura</span><span class="spec-text">Terminación dorada al horno.</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-accent="placer" data-tags="chocolate" data-nombre="Oreo" tabindex="0">
+          <div class="card-photo-wrap">
+            <img src="images/carta/oreo.jpg" alt="Oreo" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');">
+            <span class="photo-badge">🍪</span>
+            <button class="like" type="button" aria-label="Me gusta"><span class="hh">♡</span><span class="ln">0</span></button>
+        </div>
+          <h3>Oreo</h3>
+          <div class="spec">
+            <div class="spec-row"><span class="spec-label">Masa</span><span class="spec-text">Base de galletitas Oreo trituradas.</span></div>
+            <div class="spec-row"><span class="spec-label">Relleno</span><span class="spec-text">Mousse de chocolate y crema.</span></div>
+            <div class="spec-row"><span class="spec-label">Cobertura</span><span class="spec-text">Oreo triturada y crema.</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-accent="placer" data-tags="frutal liviana" data-nombre="Mousse de Frutilla" tabindex="0">
+          <div class="card-photo-wrap">
+            <img src="images/carta/mousse-de-frutilla.jpg" alt="Tarta Mousse de Frutilla" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');">
+            <span class="photo-badge">🍓</span>
+            <button class="like" type="button" aria-label="Me gusta"><span class="hh">♡</span><span class="ln">0</span></button>
+        </div>
+          <h3>Mousse de Frutilla</h3>
+          <div class="spec">
+            <div class="spec-row"><span class="spec-label">Masa</span><span class="spec-text">Masa quebrada dulce.</span></div>
+            <div class="spec-row"><span class="spec-label">Relleno</span><span class="spec-text">Mousse de frutilla natural.</span></div>
+            <div class="spec-row"><span class="spec-label">Cobertura</span><span class="spec-text">Espejo rojo de frutilla y frutillas frescas.</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-accent="placer" data-tags="dulcedeleche" data-nombre="Cayote" tabindex="0">
+          <div class="card-photo-wrap">
+            <img src="images/carta/cayote.jpg" alt="Cayote" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');">
+            <span class="photo-badge">🍮</span>
+            <button class="like" type="button" aria-label="Me gusta"><span class="hh">♡</span><span class="ln">0</span></button>
+        </div>
+          <h3>Cayote</h3>
+          <div class="spec">
+            <div class="spec-row"><span class="spec-label">Masa</span><span class="spec-text">Masa quebrada.</span></div>
+            <div class="spec-row"><span class="spec-label">Relleno</span><span class="spec-text">Dulce de leche repostero y crema pastelera.</span></div>
+            <div class="spec-row"><span class="spec-label">Cobertura</span><span class="spec-text">Caramelo acaramelado y crocante.</span></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  Flor de Sauco · Pastelería Artesanal 🌼
+</footer>
+
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-scrim" data-close></div>
+  <div class="modal-card">
+    <button class="modal-close" data-close aria-label="Cerrar">&times;</button>
+    <div class="modal-photo"><img id="modalImg" alt=""></div>
+    <div class="modal-body">
+      <p class="modal-eyebrow" id="modalEyebrow"></p>
+      <h3 id="modalTitle"></h3>
+      <div class="modal-spec" id="modalSpec"></div>
+      <div class="pairing">
+        <span class="pico">☕</span>
+        <span class="ptxt"><b>Va bien con</b><span id="modalPair"></span></span>
+      </div>
+      <button class="modal-like" id="modalLike" type="button"><span class="hh">♡</span><span id="modalLikeTxt">Me gustó</span></button>
+      <div class="alts" id="alts" hidden>
+        <p>También te pueden gustar</p>
+        <div class="alts-row" id="altsRow"></div>
+      </div>
+      <button class="again-btn" id="againBtn" hidden>🎲 Sorprendeme otra vez</button>
+    </div>
+  </div>
+</div>
+
+<div class="quiz" id="quiz" hidden>
+  <div class="quiz-card">
+    <button class="quiz-close" id="quizClose" aria-label="Cerrar">&times;</button>
+    <p class="quiz-step" id="quizStep"></p>
+    <h3 id="quizQ"></h3>
+    <div class="quiz-opts" id="quizOpts"></div>
+  </div>
+</div>
+
+<div class="attract" id="attract" hidden>
+  <img class="attract-img" id="attractA" alt="">
+  <img class="attract-img" id="attractB" alt="">
+  <div class="attract-veil"></div>
+  <div class="attract-text">
+    <p class="attract-brand">Flor de Sauco</p>
+    <span class="attract-flag" id="attractFlag" hidden></span>
+    <h2 id="attractName"></h2>
+    <p class="ad" id="attractDesc"></p>
+  </div>
+  <p class="attract-hint">Tocá la pantalla para ver la carta</p>
+  <div class="attract-qr" id="attractQr" hidden>
+    <h2>Encargá tu torta</h2>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsQAAALEAQMAAAA1m7TAAAAABlBMVEVDKBv//fmB6ZTzAAAEuklEQVR42u2dW2rDMBBFRTeg/e9SO1ApsTX3jpyfQChoTggldpxT0Mdl3tPml16jQYYMGTJkyJAhQ4YMGfLn5NHWa/2v1+fWr2+vh8f1wN+tPuNXCfJ3+dO+9YIMGfL/kpvp0q0J9ncJQp9LPeJ+vzQkQdANyJDP141bCtRsUDV46cNlV9yWRkhNdwi6ARlyKd0QF2bZEusdNsbyX4a90Q3IkGvaGxHKkDjGskPSV8ujQTcgQy4e31hCEffH9uT9wCME3YAM+XjdiMvx+duZnDNkyEfrhmdmI3zRZ/JNnh2ZFBi5OJwzZMgldEMvI5kytlKNGQHS9dlsD3QDMuQauvHSgevdLllYgmA52dYst6LB0petgm5AhlwgvrE8Di3uisqNHv6L/nB5KEk60A3IkEvYGyus4VoRSRPJxloStod3owR0AzLk43VjeRzhofQIcaiB0bxvRcVkRULQDciQq8Q3+lYuPiK4sWwJdWescFS65NANyJDr+CmaJclJWBGQlFJZ0Q+NiqAbkCEfrhvDO9S8y95qOW43JMwPue/9bpwzZMgF4ht6c+QkbMQxvH1elYT6DciQa9kbUiYa+iBBDCnMkKryPpOASLUY5wwZ8uG6YV7GsE55/Wov5LCSMOwNyJCrxTfEYUmtKGFIbA2zqjPLPkE3IEMuYW/0XCMa5eVegm4qoWEQ6atFNyBDPl835sxV5RL0SD6IFmykvrbWyMNChlwrvpFcEjNFJCdrFV9zpmHF9LVBhlzI3pjTkqqpblyzsdO8FfVNfGwg5wwZ8uG6YY2uT7PNbRvCyLGReI7+FMiQ6+jGFttMoY/2fvVSdmrIw0KGXCO+kZpQdDiPZVv8Aa3l0K/QDciQS+iGxzTSqke1Rh4SK17pgb0BGXId3dg3pKQ7Ed9I43q0Boy5xJAhl9ENbTN5aIydXgbW02gvX7OCvQEZcgXdeJrAs0wLy8DeP3k0NlyLOGfIkE/XjZZLylM41CZv6MNp+ij5FMiQK+mGJljtc2pk82qNNNZYrBTOGTLkw+Mbln59Gsqx7JD4oJtTxu7dcM6QIR9ub6QFbep6RGG5/6rtFensQYAMuZK9YdEJnQfYbA6Ytb76UpUIemBvQIZcxN7weeZpq2MewTHfbGUyo4Vzhgz5cN2wLdK+vTF3v25bVJIRgm5AhlwnvpEb1rpXa8jyFGl6ve2TZoun0Q3IkOvEN3Jtua+e3xUmLaRuMgUd3YAM+Xzd6Fb8Gc6LtthPXzzdrB6MvjbIkCvbG1ZBqpKi4uATe1ItOroBGXIRe8PCHV4vautit9yKTg4UVeGcIUM+WjfcnEiZkX3TwT75vGn3PXFRyJBr6EbaH20F5zPPH7b2+S2aSlwUMuQ6upFmaORNTL7ZLTXdh3pQZw4Zcp34hlxakcbWJNt84Hlut2/sXYIMuYpu5MKMp1WPqWAjhUM3z4Vzhgz5dN3YU7Fbb+z16jPtQXgzkYNzhgy5km48rXdMa6PzXGKtEyMuChlyPd1YlsP1t9sKyLwT1ks42CsNGXLF+Ib2zvs6tnBSPOvaPGRKfAMy5CK6oZfL2NBl0+qDmGh4vUcjnwIZchHd+MZrQIYMGTJkyJAhQ4YMGfJn5F8PzBbhF8lL5QAAAABJRU5ErkJggg==" alt="Código QR de WhatsApp">
+    <p>Escaneá el código y escribinos por WhatsApp. También podés pedirla en el mostrador.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* modo kiosco: la vidriera (pase de fotos) solo corre con ?kiosco=1 en la URL */
+  var KIOSCO = new URLSearchParams(window.location.search).get('kiosco') === '1';
+  if (KIOSCO){
+    var _volver = document.querySelector('.volver-home');
+    if (_volver) _volver.hidden = true;
+  }
+
+  /* ====== datos de maridaje y curiosidades ====== */
+  var EXTRA = {"Primavera": {"m": "Un capuchino suave o un té de frutos rojos.", "d": "Cambia con la temporada: se arma con la fruta que hay en el momento."}, "Selva Negra": {"m": "Un espresso doble, para equilibrar el dulce.", "d": "Viene de la Selva Negra alemana, tierra de cerezas y kirsch."}, "Bombón": {"m": "Un submarino bien caliente.", "d": "Todo chocolate, de la masa al baño espejo."}, "Moka": {"m": "Un cortado, o un vaso de leche fría.", "d": "Moka es el encuentro del café con la crema. El nombre viene del puerto de Moca, en Yemen."}, "María Luisa": {"m": "Café con leche, el clásico de la merienda.", "d": "Capas finitas de bizcochuelo, dulce de leche entre cada una y merengue flameado arriba."}, "Pastafrola": {"m": "Mate cocido o un té negro.", "d": "El enrejado es su marca registrada: llegó al país de la mano de los inmigrantes italianos."}, "Lemon Pie": {"m": "Un té verde o un capuchino.", "d": "El merengue italiano se monta con almíbar caliente. Por eso queda firme y brillante."}, "Cabsha": {"m": "Un espresso corto.", "d": "Un clásico bien argentino: dulce de leche, nueces y merengue tostado."}, "Maracuyá": {"m": "Limonada con menta o un té helado.", "d": "La fruta de la pasión aporta la acidez justa para cortar el dulce."}, "Coco": {"m": "Café con leche o un cortado.", "d": "El coco tostado por arriba es lo que le da todo el aroma."}, "Manzana": {"m": "Té con canela o un chocolate caliente.", "d": "Manzana y canela, la dupla que nunca falla."}, "Nuez": {"m": "Un espresso o un submarino.", "d": "Nueces caramelizadas adentro y confitadas arriba, para que crujan."}, "Ricota": {"m": "Café con leche o mate cocido.", "d": "Sin harina en el relleno: ricota, huevo y ralladura de limón."}, "Oreo": {"m": "Un submarino, o leche bien fría.", "d": "La base es galletita pura, sin masa. Por eso cruje."}, "Mousse de Frutilla": {"m": "Limonada o un té helado.", "d": "Mousse de frutilla natural, con frutillas frescas arriba."}, "Cayote": {"m": "Un cortado.", "d": "El caramelo va arriba de todo y cruje al primer bocado."}};
+
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+
+  var data = cards.map(function(card){
+    var img = card.querySelector('.card-photo-wrap img');
+    var specs = Array.prototype.slice.call(card.querySelectorAll('.spec-row')).map(function(r){
+      return { label: r.querySelector('.spec-label').textContent,
+               text:  r.querySelector('.spec-text').textContent };
+    });
+    var cont = card.closest('section, div[id^="sub-"]');
+    var t = cont ? cont.querySelector('.section-title') : null;
+    var nombre = card.getAttribute('data-nombre');
+    return {
+      card: card, nombre: nombre,
+      src: img ? img.getAttribute('src') : '',
+      specs: specs,
+      seccion: t ? t.textContent : '',
+      tags: (card.getAttribute('data-tags') || '').split(' '),
+      maridaje: (EXTRA[nombre] || {}).m || '',
+      dato: (EXTRA[nombre] || {}).d || '',
+      like: card.querySelector('.like')
+    };
+  });
+  var porNombre = {};
+  data.forEach(function(d){ porNombre[d.nombre] = d; });
+
+  function irArriba(){
+    try { window.scrollTo({ top:0, behavior:'smooth' }); }
+    catch(e){ try { window.scrollTo(0,0); } catch(e2){} }
+  }
+  function traerALaVista(el){
+    if (!el || typeof el.scrollIntoView !== 'function') return;
+    try { el.scrollIntoView({ block:'center', behavior:'smooth' }); }
+    catch(e){ el.scrollIntoView(); }
+  }
+  function mezclar(arr){
+    var a = arr.slice();
+    for (var i=a.length-1; i>0; i--){
+      var j = Math.floor(Math.random()*(i+1));
+      var t = a[i]; a[i]=a[j]; a[j]=t;
+    }
+    return a;
+  }
+
+  /* ================================================================
+     VOTOS  ("Las más elegidas")
+     ================================================================ */
+  var CLAVE = 'fds_votos_v1';
+  var votos = {}, mios = {}, memoria = false;
+
+  function leerGuardado(){
+    try {
+      var raw = window.localStorage.getItem(CLAVE);
+      if (raw){ var o = JSON.parse(raw); votos = o.v || {}; mios = o.m || {}; }
+    } catch(e){ memoria = true; }
+  }
+  function guardar(){
+    if (memoria) return;
+    try { window.localStorage.setItem(CLAVE, JSON.stringify({ v:votos, m:mios })); }
+    catch(e){ memoria = true; }
+  }
+  leerGuardado();
+
+  function pintarVotos(){
+    var max = 0;
+    data.forEach(function(d){ max = Math.max(max, votos[d.nombre] || 0); });
+
+    data.forEach(function(d){
+      var n = votos[d.nombre] || 0;
+      var num = d.like.querySelector('.ln');
+      num.textContent = n;
+      num.classList.toggle('zero', n === 0);
+      d.like.querySelector('.hh').textContent = mios[d.nombre] ? '♥' : '♡';
+      d.like.classList.toggle('on', !!mios[d.nombre]);
+
+      var corona = d.card.querySelector('.crown');
+      var esTop = max > 0 && n === max;
+      if (esTop && !corona){
+        corona = document.createElement('span');
+        corona.className = 'crown';
+        corona.textContent = '★ La más elegida';
+        d.card.appendChild(corona);
+      }
+      if (corona) corona.hidden = !esTop;
+    });
+
+    if (modalTitle.textContent && porNombre[modalTitle.textContent]) pintarBotonLike(modalTitle.textContent);
+  }
+
+  function votar(nombre){
+    if (mios[nombre]){
+      votos[nombre] = Math.max(0, (votos[nombre] || 1) - 1);
+      delete mios[nombre];
+    } else {
+      votos[nombre] = (votos[nombre] || 0) + 1;
+      mios[nombre] = 1;
+      var b = porNombre[nombre].like;
+      b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump');
+    }
+    guardar();
+    pintarVotos();
+  }
+
+  data.forEach(function(d){
+    d.like.addEventListener('click', function(e){
+      e.stopPropagation();
+      votar(d.nombre);
+    });
+  });
+
+  /* ================================================================
+     FICHA GRANDE
+     ================================================================ */
+  var modal      = document.getElementById('modal');
+  var modalImg   = document.getElementById('modalImg');
+  var modalTitle = document.getElementById('modalTitle');
+  var modalEye   = document.getElementById('modalEyebrow');
+  var modalSpec  = document.getElementById('modalSpec');
+  var modalPair  = document.getElementById('modalPair');
+  var modalLike  = document.getElementById('modalLike');
+  var modalLikeT = document.getElementById('modalLikeTxt');
+  var alts       = document.getElementById('alts');
+  var altsRow    = document.getElementById('altsRow');
+  var againBtn   = document.getElementById('againBtn');
+
+  function pintarBotonLike(nombre){
+    var yo = !!mios[nombre];
+    var n  = votos[nombre] || 0;
+    modalLike.classList.toggle('on', yo);
+    modalLike.querySelector('.hh').textContent = yo ? '♥' : '♡';
+    modalLikeT.textContent = n === 0
+      ? (yo ? 'Te gustó' : 'Me gustó')
+      : (yo ? 'Te gustó · ' + n : 'Me gustó · ' + n);
+  }
+
+  function pintar(d){
+    modalImg.src = d.src;
+    modalImg.alt = d.nombre;
+    modalTitle.textContent = d.nombre;
+    modalEye.textContent = d.seccion;
+    modalPair.textContent = d.maridaje;
+    modalSpec.textContent = '';
+    d.specs.forEach(function(sp){
+      var row = document.createElement('div'); row.className = 'spec-row';
+      var l = document.createElement('span'); l.className = 'spec-label'; l.textContent = sp.label;
+      var t = document.createElement('span'); t.className = 'spec-text';  t.textContent = sp.text;
+      row.appendChild(l); row.appendChild(t); modalSpec.appendChild(row);
+    });
+    pintarBotonLike(d.nombre);
+  }
+
+  modalLike.addEventListener('click', function(){
+    if (modalTitle.textContent) votar(modalTitle.textContent);
+  });
+
+  function mostrarAlternativas(lista){
+    altsRow.textContent = '';
+    if (!lista || !lista.length){ alts.hidden = true; return; }
+    lista.forEach(function(d){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'alt';
+      var im = document.createElement('img'); im.src = d.src; im.alt = d.nombre;
+      var sp = document.createElement('span'); sp.textContent = d.nombre;
+      b.appendChild(im); b.appendChild(sp);
+      b.addEventListener('click', function(){ abrirFicha(d, { alternativas: lista.filter(function(x){ return x !== d; }) }); });
+      altsRow.appendChild(b);
+    });
+    alts.hidden = false;
+  }
+
+  function abrirFicha(d, opts){
+    opts = opts || {};
+    pintar(d);
+    modalEye.textContent = opts.eyebrow || d.seccion;
+    againBtn.hidden = !opts.sorteo;
+    mostrarAlternativas(opts.alternativas);
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function cerrarFicha(){
+    modal.hidden = true;
+    modal.classList.remove('is-spinning','is-landed');
+    if (quiz.hidden) document.body.style.overflow = '';
+    cards.forEach(function(c){ c.classList.remove('is-picked'); });
+    if (girando){ clearTimeout(girando); girando = null; }
+  }
+
+  modal.addEventListener('click', function(e){
+    if (e.target.hasAttribute('data-close')) cerrarFicha();
+  });
+
+  data.forEach(function(d){
+    d.card.addEventListener('click', function(){ abrirFicha(d, {}); });
+    d.card.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); abrirFicha(d, {}); }
+    });
+  });
+
+  /* ================================================================
+     SORPRENDEME
+     ================================================================ */
+  var girando = null;
+
+  function sorprender(){
+    var elegido = data[Math.floor(Math.random()*data.length)];
+    modal.classList.remove('is-landed');
+    modal.classList.add('is-spinning');
+    againBtn.hidden = true;
+    alts.hidden = true;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+
+    var delay = 65, k = Math.floor(Math.random()*data.length);
+    (function tick(){
+      k = (k+1) % data.length;
+      pintar(data[k]);
+      modalEye.textContent = 'Girando...';
+      delay *= 1.19;
+      if (delay < 340){
+        girando = setTimeout(tick, delay);
+      } else {
+        girando = setTimeout(function(){
+          pintar(elegido);
+          modalEye.textContent = 'Te tocó';
+          modal.classList.remove('is-spinning');
+          modal.classList.add('is-landed');
+          againBtn.hidden = false;
+          cards.forEach(function(c){ c.classList.remove('is-picked'); });
+          elegido.card.classList.add('is-picked');
+          traerALaVista(elegido.card);
+        }, delay);
+      }
+    })();
+  }
+  document.getElementById('surpriseBtn').addEventListener('click', sorprender);
+  againBtn.addEventListener('click', sorprender);
+
+  /* ================================================================
+     ¿QUÉ TE LLEVO?
+     ================================================================ */
+  var quiz      = document.getElementById('quiz');
+  var quizStep  = document.getElementById('quizStep');
+  var quizQ     = document.getElementById('quizQ');
+  var quizOpts  = document.getElementById('quizOpts');
+
+  var PREGUNTAS = [
+    { q: '¿Cómo lo tenés ganas?',
+      opts: [
+        { ico:'🍯', txt:'Dulce y contundente', val:'contundente' },
+        { ico:'🍃', txt:'Fresco y liviano',    val:'fresco' }
+      ]},
+    { q: '¿Y con qué sabor?',
+      opts: [
+        { ico:'🍫', txt:'Chocolate o café',       val:'choco' },
+        { ico:'🍓', txt:'Frutas',                 val:'fruta' },
+        { ico:'🥛', txt:'Dulce de leche o nueces', val:'ddl' }
+      ]}
+  ];
+
+  var respuestas = [];
+
+  function puntaje(d){
+    var p = Math.random()*0.9;   // desempate, para que no salga siempre lo mismo
+    var liviana = d.tags.indexOf('liviana') > -1;
+    if (respuestas[0] === 'fresco')      p += liviana ? 2 : 0;
+    if (respuestas[0] === 'contundente') p += liviana ? 0 : 2;
+    if (respuestas[1] === 'choco' && (d.tags.indexOf('chocolate')>-1 || d.tags.indexOf('cafe')>-1)) p += 3;
+    if (respuestas[1] === 'fruta' && d.tags.indexOf('frutal')>-1) p += 3;
+    if (respuestas[1] === 'ddl'   && (d.tags.indexOf('dulcedeleche')>-1 || d.tags.indexOf('nueces')>-1)) p += 3;
+    return p;
+  }
+
+  function pintarPregunta(i){
+    var P = PREGUNTAS[i];
+    quizStep.textContent = 'Pregunta ' + (i+1) + ' de ' + PREGUNTAS.length;
+    quizQ.textContent = P.q;
+    quizOpts.textContent = '';
+    P.opts.forEach(function(o){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'qopt';
+      var ic = document.createElement('span'); ic.className='qico'; ic.textContent = o.ico;
+      var tx = document.createElement('span'); tx.textContent = o.txt;
+      b.appendChild(ic); b.appendChild(tx);
+      b.addEventListener('click', function(){
+        respuestas[i] = o.val;
+        if (i + 1 < PREGUNTAS.length) pintarPregunta(i+1);
+        else revelar();
+      });
+      quizOpts.appendChild(b);
+    });
+  }
+
+  function revelar(){
+    // puntaje fijo por producto: si se recalcula dentro del sort, el orden sale inconsistente
+    var tabla = data.map(function(d){ return { d:d, p:puntaje(d) }; });
+    tabla.sort(function(a,b){ return b.p - a.p; });
+    var orden = tabla.map(function(x){ return x.d; });
+    quiz.hidden = true;
+    abrirFicha(orden[0], {
+      eyebrow: 'Te recomendamos',
+      alternativas: orden.slice(1,3)
+    });
+  }
+
+  function abrirQuiz(){
+    respuestas = [];
+    quiz.hidden = false;
+    document.body.style.overflow = 'hidden';
+    pintarPregunta(0);
+  }
+  function cerrarQuiz(){
+    quiz.hidden = true;
+    if (modal.hidden) document.body.style.overflow = '';
+  }
+  document.getElementById('quizBtn').addEventListener('click', abrirQuiz);
+  document.getElementById('quizClose').addEventListener('click', cerrarQuiz);
+  quiz.addEventListener('click', function(e){ if (e.target === quiz) cerrarQuiz(); });
+
+  /* ================================================================
+     MODO VIDRIERA
+     ================================================================ */
+  var INACTIVIDAD = 40000;
+  var PASO        = 6500;
+  var PASO_QR     = 9000;
+
+  var attract  = document.getElementById('attract');
+  var capas    = [document.getElementById('attractA'), document.getElementById('attractB')];
+  var aFlag    = document.getElementById('attractFlag');
+  var aName    = document.getElementById('attractName');
+  var aDesc    = document.getElementById('attractDesc');
+  var aQr      = document.getElementById('attractQr');
+  var aTexto   = document.querySelector('.attract-text');
+  var aHint    = document.querySelector('.attract-hint');
+  var capaViva = 0, idleTimer, slideTimer, cola = [], pos = 0;
+
+  function destacada(){
+    var max = 0, top = null;
+    data.forEach(function(d){
+      var n = votos[d.nombre] || 0;
+      if (n > max){ max = n; top = d; }
+    });
+    if (top) return { d: top, flag: '★ La más elegida' };
+    var hoy = new Date();
+    var dias = Math.floor(Date.UTC(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()) / 86400000);
+    return { d: data[dias % data.length], flag: '🌼 La del día' };
+  }
+
+  function armarCola(){
+    var dest = destacada();
+    var resto = mezclar(data.filter(function(d){ return d !== dest.d; }));
+    cola = [{ d: dest.d, flag: dest.flag }].concat(
+      resto.map(function(d){ return { d: d, flag: '' }; })
+    );
+    cola.push({ qr: true });
+    pos = 0;
+  }
+
+  function mostrarSlide(){
+    if (pos >= cola.length) armarCola();
+    var item = cola[pos++];
+
+    if (item.qr){
+      aQr.hidden = false;
+      aQr.style.animation = 'none'; void aQr.offsetWidth; aQr.style.animation = '';
+      aHint.hidden = true;
+      slideTimer = setTimeout(mostrarSlide, PASO_QR);
+      return;
+    }
+    aQr.hidden = true;
+    aHint.hidden = false;
+
+    var d = item.d;
+    var entra = capas[1 - capaViva], sale = capas[capaViva];
+    entra.src = d.src;
+    entra.alt = d.nombre;
+    entra.classList.remove('is-live');
+    void entra.offsetWidth;
+    entra.classList.add('is-live');
+    sale.classList.remove('is-live');
+    capaViva = 1 - capaViva;
+
+    aFlag.hidden = !item.flag;
+    aFlag.textContent = item.flag || '';
+    aName.textContent = d.nombre;
+    aDesc.textContent = d.dato;
+    if (aTexto){ aTexto.style.animation = 'none'; void aTexto.offsetWidth; aTexto.style.animation = ''; }
+
+    slideTimer = setTimeout(mostrarSlide, PASO);
+  }
+
+  function abrirVidriera(){
+    if (!attract.hidden || !modal.hidden || !quiz.hidden) return;
+    armarCola();
+    attract.hidden = false;
+    document.body.style.overflow = 'hidden';
+    mostrarSlide();
+  }
+  function cerrarVidriera(){
+    if (attract.hidden) return;
+    attract.hidden = true;
+    clearTimeout(slideTimer);
+    capas.forEach(function(c){ c.classList.remove('is-live'); });
+    aQr.hidden = true;
+    if (modal.hidden && quiz.hidden) document.body.style.overflow = '';
+  }
+  function reiniciarInactividad(){
+    if (!KIOSCO) return;   // en la web publica la vidriera nunca arranca sola; solo en modo kiosco (?kiosco=1)
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(abrirVidriera, INACTIVIDAD);
+  }
+
+  ['pointerdown','touchstart','mousemove','wheel','scroll','keydown'].forEach(function(ev){
+    window.addEventListener(ev, function(){ cerrarVidriera(); reiniciarInactividad(); }, { passive:true });
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){ cerrarFicha(); cerrarQuiz(); cerrarVidriera(); }
+  });
+
+  /* ================================================================
+     PARA EL PERSONAL: 5 toques en la florcita reinician los votos
+     ================================================================ */
+  var logo = document.querySelector('.logo-mark');
+  if (logo){
+    var toques = 0, tt;
+    logo.addEventListener('click', function(){
+      toques++;
+      clearTimeout(tt);
+      tt = setTimeout(function(){ toques = 0; }, 1800);
+      if (toques >= 5){
+        toques = 0;
+        if (window.confirm('¿Reiniciar los votos de todas las tortas?')){
+          votos = {}; mios = {}; guardar(); pintarVotos();
+        }
+      }
+    });
+  }
+
+  pintarVotos();
+  reiniciarInactividad();
+})();
+</script>
+</body>
+</html>
