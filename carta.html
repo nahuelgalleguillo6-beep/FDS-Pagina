@@ -116,6 +116,14 @@
   .card-photo-wrap img{ width:100%; height:100%; object-fit:cover; display:block; }
   .card-photo-wrap.placeholder{ display:flex; align-items:center; justify-content:center; }
   .placeholder-icon{ font-size:1.8rem; opacity:0.55; }
+  .card.agotada .card-photo-wrap img{ filter:grayscale(0.85); opacity:0.5; }
+  .card.agotada .card-photo-wrap::after{
+    content:"Agotada hoy"; position:absolute; left:0; right:0; bottom:0;
+    background:rgba(42,24,16,0.82); color:#fff; text-align:center;
+    font-size:0.62rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase;
+    padding:5px 4px;
+  }
+  .card.agotada h3{ opacity:0.55; }
   .photo-badge{
     position:absolute; top:6px; left:6px;
     width:24px; height:24px;
@@ -337,11 +345,11 @@
   @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
   .attract-img{
     position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-    object-position:center bottom;
+    object-position:center 85%;
     opacity:0; transition: opacity 1.15s ease;
   }
   .attract-img.is-live{ opacity:1; animation: kenburns 9s linear both; }
-  @keyframes kenburns{ from{transform:scale(1.03)} to{transform:scale(1.15)} }
+  @keyframes kenburns{ from{transform:scale(1.0)} to{transform:scale(1.06)} }
   .attract-veil{
     position:absolute; inset:0;
     background: linear-gradient(180deg, rgba(30,16,10,0.55) 0%, rgba(30,16,10,0.05) 32%, rgba(30,16,10,0.86) 100%);
@@ -770,6 +778,18 @@
     if (_volver) _volver.hidden = true;
   }
 
+  /* ====== productos agotados: se editan desde /disponibilidad.html (guardado en este navegador) ====== */
+  var AGOTADOS_SEED = ["Oreo", "Mousse de Frutilla", "Maracuyá"]; // estado inicial, hasta tocar algo en el panel
+  var AGOTADOS = {};
+  (function(){
+    var lista = AGOTADOS_SEED;
+    try {
+      var raw = localStorage.getItem('fds_agotados');
+      if (raw !== null) lista = JSON.parse(raw);
+    } catch(e){}
+    lista.forEach(function(n){ AGOTADOS[n] = 1; });
+  })();
+
   /* ====== datos de maridaje y curiosidades ====== */
   var EXTRA = {"Primavera": {"m": "Un capuchino suave o un té de frutos rojos.", "d": "Cambia con la temporada: se arma con la fruta que hay en el momento."}, "Selva Negra": {"m": "Un espresso doble, para equilibrar el dulce.", "d": "Viene de la Selva Negra alemana, tierra de cerezas y kirsch."}, "Bombón": {"m": "Un submarino bien caliente.", "d": "Todo chocolate, de la masa al baño espejo."}, "Moka": {"m": "Un cortado, o un vaso de leche fría.", "d": "Moka es el encuentro del café con la crema. El nombre viene del puerto de Moca, en Yemen."}, "María Luisa": {"m": "Café con leche, el clásico de la merienda.", "d": "Capas finitas de bizcochuelo, dulce de leche entre cada una y merengue flameado arriba."}, "Pastafrola": {"m": "Mate cocido o un té negro.", "d": "El enrejado es su marca registrada: llegó al país de la mano de los inmigrantes italianos."}, "Lemon Pie": {"m": "Un té verde o un capuchino.", "d": "El merengue italiano se monta con almíbar caliente. Por eso queda firme y brillante."}, "Cabsha": {"m": "Un espresso corto.", "d": "Un clásico bien argentino: dulce de leche, nueces y merengue tostado."}, "Maracuyá": {"m": "Limonada con menta o un té helado.", "d": "La fruta de la pasión aporta la acidez justa para cortar el dulce."}, "Coco": {"m": "Café con leche o un cortado.", "d": "El coco tostado por arriba es lo que le da todo el aroma."}, "Manzana": {"m": "Té con canela o un chocolate caliente.", "d": "Manzana y canela, la dupla que nunca falla."}, "Nuez": {"m": "Un espresso o un submarino.", "d": "Nueces caramelizadas adentro y confitadas arriba, para que crujan."}, "Ricota": {"m": "Café con leche o mate cocido.", "d": "Sin harina en el relleno: ricota, huevo y ralladura de limón."}, "Oreo": {"m": "Un submarino, o leche bien fría.", "d": "La base es galletita pura, sin masa. Por eso cruje."}, "Mousse de Frutilla": {"m": "Limonada o un té helado.", "d": "Mousse de frutilla natural, con frutillas frescas arriba."}, "Cayote": {"m": "Un cortado.", "d": "El caramelo va arriba de todo y cruje al primer bocado."}};
 
@@ -792,11 +812,16 @@
       tags: (card.getAttribute('data-tags') || '').split(' '),
       maridaje: (EXTRA[nombre] || {}).m || '',
       dato: (EXTRA[nombre] || {}).d || '',
-      like: card.querySelector('.like')
+      like: card.querySelector('.like'),
+      agotado: !!AGOTADOS[nombre]
     };
   });
   var porNombre = {};
   data.forEach(function(d){ porNombre[d.nombre] = d; });
+  data.forEach(function(d){ if (d.agotado) d.card.classList.add('agotada'); });
+  /* pool para sorprendeme/quiz/vidriera: nunca ofrece algo agotado (si todo está agotado, usa todo) */
+  var disponibles = data.filter(function(d){ return !d.agotado; });
+  if (!disponibles.length) disponibles = data;
 
   function irArriba(){
     try { window.scrollTo({ top:0, behavior:'smooth' }); }
@@ -977,7 +1002,7 @@
   var girando = null;
 
   function sorprender(){
-    var elegido = data[Math.floor(Math.random()*data.length)];
+    var elegido = disponibles[Math.floor(Math.random()*disponibles.length)];
     modal.classList.remove('is-landed');
     modal.classList.add('is-spinning');
     againBtn.hidden = true;
@@ -985,10 +1010,10 @@
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
 
-    var delay = 65, k = Math.floor(Math.random()*data.length);
+    var delay = 65, k = Math.floor(Math.random()*disponibles.length);
     (function tick(){
-      k = (k+1) % data.length;
-      pintar(data[k]);
+      k = (k+1) % disponibles.length;
+      pintar(disponibles[k]);
       modalEye.textContent = 'Girando...';
       delay *= 1.19;
       if (delay < 340){
@@ -1067,7 +1092,7 @@
 
   function revelar(){
     // puntaje fijo por producto: si se recalcula dentro del sort, el orden sale inconsistente
-    var tabla = data.map(function(d){ return { d:d, p:puntaje(d) }; });
+    var tabla = disponibles.map(function(d){ return { d:d, p:puntaje(d) }; });
     tabla.sort(function(a,b){ return b.p - a.p; });
     var orden = tabla.map(function(x){ return x.d; });
     quiz.hidden = true;
@@ -1110,19 +1135,19 @@
 
   function destacada(){
     var max = 0, top = null;
-    data.forEach(function(d){
+    disponibles.forEach(function(d){
       var n = votos[d.nombre] || 0;
       if (n > max){ max = n; top = d; }
     });
     if (top) return { d: top, flag: '★ La más elegida' };
     var hoy = new Date();
     var dias = Math.floor(Date.UTC(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()) / 86400000);
-    return { d: data[dias % data.length], flag: '🌼 La del día' };
+    return { d: disponibles[dias % disponibles.length], flag: '🌼 La del día' };
   }
 
   function armarCola(){
     var dest = destacada();
-    var resto = mezclar(data.filter(function(d){ return d !== dest.d; }));
+    var resto = mezclar(disponibles.filter(function(d){ return d !== dest.d; }));
     cola = [{ d: dest.d, flag: dest.flag }].concat(
       resto.map(function(d){ return { d: d, flag: '' }; })
     );

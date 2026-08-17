@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /mayoristas.html
+Disallow: /disponibilidad.html
 Sitemap: https://flordesaucosrl.com/sitemap.xml

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flor de Sauco · Disponibilidad</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #FBF4E9;
+    --cream-alt: #F3E8D8;
+    --paper: #FFFDF9;
+    --brown-900: #43281B;
+    --brown-700: #6B4226;
+    --brown-500: #8B6248;
+    --brown-300: #C7A788;
+    --line: #E7D7C1;
+    --ok: #7C9A5C;
+    --off: #B4483F;
+    --shadow: 0 4px 12px rgba(67, 40, 27, 0.07);
+  }
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body{ margin:0; padding:0; background:var(--cream); color:var(--brown-900);
+    font-family:'Nunito Sans', -apple-system, 'Segoe UI', Roboto, sans-serif; }
+  h1{ font-family:'Playfair Display', Georgia, serif; margin:0; }
+
+  header{ text-align:center; padding:20px 16px 14px; background:linear-gradient(180deg, var(--cream-alt), var(--cream)); }
+  header h1{ font-size:1.5rem; font-weight:700; font-style:italic; color:var(--brown-900); }
+  header p{ margin:6px 0 0; font-size:0.72rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--brown-500); font-weight:700; }
+
+  main{ max-width:640px; margin:0 auto; padding:8px 16px 40px; }
+
+  .aviso{
+    background:var(--paper); border:1px solid var(--line); border-radius:12px;
+    padding:12px 14px; margin:14px 0 20px; font-size:0.8rem; line-height:1.5; color:var(--brown-700);
+  }
+
+  .section-title{
+    font-size:0.95rem; font-weight:700; color:var(--brown-700);
+    margin:22px 2px 8px; font-family:'Playfair Display', Georgia, serif;
+  }
+  .section-title:first-of-type{ margin-top:4px; }
+
+  .prow{
+    display:flex; align-items:center; gap:10px;
+    background:var(--paper); border:1px solid var(--line); border-radius:12px;
+    padding:10px 12px; margin-bottom:8px; box-shadow:var(--shadow);
+  }
+  .picto{ font-size:1.2rem; flex:0 0 auto; width:26px; text-align:center; }
+  .pinfo{ flex:1 1 auto; min-width:0; }
+  .pname{ font-weight:700; font-size:0.92rem; line-height:1.25; }
+  .pstate{ font-size:0.72rem; font-weight:700; letter-spacing:0.3px; margin-top:1px; }
+  .pstate.on{ color:var(--ok); }
+  .pstate.off{ color:var(--off); }
+
+  .switch{ position:relative; display:inline-block; width:46px; height:27px; flex:0 0 auto; }
+  .switch input{ position:absolute; opacity:0; width:100%; height:100%; margin:0; cursor:pointer; }
+  .track{ position:absolute; inset:0; background:#D8C5AE; border-radius:999px; transition:background .18s ease; pointer-events:none; }
+  .thumb{ position:absolute; top:3px; left:3px; width:21px; height:21px; border-radius:50%; background:#fff;
+    box-shadow:0 1px 3px rgba(0,0,0,.28); transition:transform .18s ease; pointer-events:none; }
+  .switch input:checked ~ .track{ background:var(--ok); }
+  .switch input:checked ~ .track .thumb{ transform:translateX(19px); }
+
+  .prow.is-off{ opacity:0.72; }
+
+  footer{ text-align:center; padding:10px 20px 30px; color:var(--brown-500); font-size:0.72rem; }
+  footer a{ color:var(--brown-700); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Disponibilidad</h1>
+  <p>Flor de Sauco · Carta</p>
+</header>
+
+<main>
+  <div class="aviso">
+    Activá o desactivá cada producto según haya stock hoy. Los que quedan <b>desactivados</b> se muestran como
+    "Agotada hoy" en la carta y no se ofrecen en Sorprendeme, el quiz ni la vidriera. El cambio se guarda en
+    <b>este navegador/tablet</b> y se aplica al instante en la carta que esté abierta en el mismo dispositivo.
+  </div>
+
+  <div id="list"></div>
+</main>
+
+<footer>
+  <a href="carta.html">← Volver a la carta</a>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  var PRODUCTOS = [
+    { sec: 'Tortas', items: [
+      { n:'Primavera', e:'🌸' }, { n:'Selva Negra', e:'🍒' }, { n:'Bombón', e:'🍫' },
+      { n:'Moka', e:'☕' }, { n:'María Luisa', e:'🍯' }
+    ]},
+    { sec: 'Tartas · Las Clásicas', items: [
+      { n:'Pastafrola', e:'🍐' }, { n:'Lemon Pie', e:'🍋' }, { n:'Cabsha', e:'🌰' }
+    ]},
+    { sec: 'Tartas · Dulzura Natural', items: [
+      { n:'Maracuyá', e:'🌺' }, { n:'Coco', e:'🥥' }, { n:'Manzana', e:'🍎' }, { n:'Nuez', e:'🌰' }
+    ]},
+    { sec: 'Tartas · Puro Placer', items: [
+      { n:'Ricota', e:'🧀' }, { n:'Oreo', e:'🍪' }, { n:'Mousse de Frutilla', e:'🍓' }, { n:'Cayote', e:'🍮' }
+    ]}
+  ];
+
+  var SEED_AGOTADOS = ['Oreo', 'Mousse de Frutilla', 'Maracuyá'];
+  var KEY = 'fds_agotados';
+
+  function leer(){
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw !== null) return JSON.parse(raw);
+    } catch(e){}
+    return SEED_AGOTADOS.slice();
+  }
+  function guardar(lista){
+    localStorage.setItem(KEY, JSON.stringify(lista));
+  }
+
+  var agotados = leer();
+
+  function estaAgotado(n){ return agotados.indexOf(n) > -1; }
+
+  function marcar(n, disponible){
+    var i = agotados.indexOf(n);
+    if (disponible && i > -1) agotados.splice(i, 1);
+    if (!disponible && i === -1) agotados.push(n);
+    guardar(agotados);
+  }
+
+  var list = document.getElementById('list');
+
+  PRODUCTOS.forEach(function(sec){
+    var h = document.createElement('h2');
+    h.className = 'section-title';
+    h.textContent = sec.sec;
+    list.appendChild(h);
+
+    sec.items.forEach(function(it){
+      var disponible = !estaAgotado(it.n);
+
+      var row = document.createElement('div');
+      row.className = 'prow' + (disponible ? '' : ' is-off');
+
+      var picto = document.createElement('span');
+      picto.className = 'picto'; picto.textContent = it.e;
+
+      var info = document.createElement('div');
+      info.className = 'pinfo';
+      var name = document.createElement('div');
+      name.className = 'pname'; name.textContent = it.n;
+      var state = document.createElement('div');
+      state.className = 'pstate ' + (disponible ? 'on' : 'off');
+      state.textContent = disponible ? 'Disponible' : 'Agotada hoy';
+      info.appendChild(name); info.appendChild(state);
+
+      var label = document.createElement('label');
+      label.className = 'switch';
+      var input = document.createElement('input');
+      input.type = 'checkbox';
+      input.checked = disponible;
+      var track = document.createElement('span');
+      track.className = 'track';
+      var thumb = document.createElement('span');
+      thumb.className = 'thumb';
+      track.appendChild(thumb);
+      label.appendChild(input); label.appendChild(track);
+
+      input.addEventListener('change', function(){
+        var dispo = input.checked;
+        marcar(it.n, dispo);
+        row.classList.toggle('is-off', !dispo);
+        state.className = 'pstate ' + (dispo ? 'on' : 'off');
+        state.textContent = dispo ? 'Disponible' : 'Agotada hoy';
+      });
+
+      row.appendChild(picto); row.appendChild(info); row.appendChild(label);
+      list.appendChild(row);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
