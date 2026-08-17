@@ -88,12 +88,17 @@
 </main>
 
 <footer>
-  <a href="carta.html">← Volver a la carta</a>
+  <a id="volver" href="carta.html">← Volver a la carta</a>
 </footer>
 
 <script>
 (function(){
   'use strict';
+
+  /* si venimos de la tablet (app instalada o ?kiosco=1), volver preservando el modo kiosco */
+  var appInstalada = !!(window.matchMedia && (matchMedia('(display-mode: fullscreen)').matches || matchMedia('(display-mode: standalone)').matches));
+  var KIOSCO = new URLSearchParams(window.location.search).get('kiosco') === '1' || appInstalada;
+  if (KIOSCO) document.getElementById('volver').href = 'carta.html?kiosco=1';
 
   var PRODUCTOS = [
     { sec: 'Tortas', items: [

@@ -411,6 +411,18 @@
   .volver-home:hover{ color:var(--brown-900); border-color:var(--brown-300); }
   .volver-home[hidden]{ display:none; }
 
+  /* Acceso al panel de disponibilidad: solo visible en la tablet (modo kiosco) */
+  .panel-link{
+    position:fixed; right:12px; bottom:12px; z-index:25;
+    display:inline-flex; align-items:center; justify-content:center;
+    width:36px; height:36px; border-radius:50%;
+    font-size:1.05rem; text-decoration:none; color:var(--brown-500);
+    background:rgba(255,253,249,0.65); border:1px solid var(--line);
+    box-shadow: var(--shadow-soft); opacity:0.6;
+  }
+  .panel-link:hover, .panel-link:active{ opacity:1; color:var(--brown-900); }
+  .panel-link[hidden]{ display:none; }
+
   /* Ficha grande / Sorprendeme en tablet APAISADA: compacta para que no ocupe de mas */
   @media (orientation: landscape) and (max-height: 820px){
     .modal{ padding:10px; }
@@ -432,6 +444,7 @@
 <body>
 
 <a class="volver-home" href="/" aria-label="Volver a flordesaucosrl.com">← Inicio</a>
+<a class="panel-link" href="disponibilidad.html" aria-label="Disponibilidad de productos" hidden>⚙</a>
 
 <header>
   <div class="logo-mark">🌼</div>
@@ -776,6 +789,8 @@
   if (KIOSCO){
     var _volver = document.querySelector('.volver-home');
     if (_volver) _volver.hidden = true;
+    var _panel = document.querySelector('.panel-link');
+    if (_panel){ _panel.hidden = false; _panel.href = 'disponibilidad.html?kiosco=1'; }
   }
 
   /* ====== productos agotados: se editan desde /disponibilidad.html (guardado en este navegador) ====== */

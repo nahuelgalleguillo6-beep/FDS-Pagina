@@ -3,7 +3,7 @@
   "short_name": "Carta",
   "description": "Carta de pasteles de Flor de Sauco",
   "start_url": "/carta?kiosco=1",
-  "scope": "/carta",
+  "scope": "/",
   "display": "fullscreen",
   "display_override": ["fullscreen", "standalone"],
   "background_color": "#FBF4E9",
